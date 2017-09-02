@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>자바스크립트에서 객체 생성</title>
+<script type="text/javascript">
+	//1. Object 객체 이용하여 객체 생성
+	var person = new Object();// 이렇게 하는게 Jscript가 객체를 생성하는 가장 정석문법.
+	person.name = '홍길자'; //name 프로퍼티 값.
+	person.tel = '02-123-4567'; // tel 프로퍼티 값.
+	console.log(person);
+
+	//2. 객체 리터럴 이용하여 객체 생성
+	var sonnim = {};
+	sonnim.name = '홍길준';
+	sonnim.tel = '02-123-4567';
+	console.log("sonnim 객체 출력: " + sonnim);
+	// 이렇게 문자열과 '+'로 연달아서 출력하면 브라우저의 콘솔에서 객체의 행목을 확장할 수가 없음.
+	// 따라서 제대로 보려면 아래처럼 따로 객체만 찍어줘야 함
+	console.log(sonnim);
+	
+	// 객체에 동적으로 함수도 추가 가능할 까?
+	sonnim.func = function() {
+		console.log('sonnim에 추가한 함수호출');
+	};
+	
+	// 추가 됨. 그러나 구문 기술 후에 추가되는 건 물론이고,
+	// 구문 전의 호출문에도 추가되는 사실을 확인함.
+	console.log("sonnim.func으로 func을 추가한 sonnim 객체 출력: ");
+	console.log(sonnim);
+
+	// sonnim.func(); 출력해보기
+	sonnim.func();
+</script>
+
+</head>
+<body>
+
+</body>
+</html>

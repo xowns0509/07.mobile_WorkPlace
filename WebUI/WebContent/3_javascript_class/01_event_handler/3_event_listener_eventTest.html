@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>addEventListener로 이벤트 리스너 연결</title>
+<script type="text/javascript">
+	var btn = document.getElementById('btn');
+	btn.addEventListener('click', btn_click);
+	// addEventListener를 이용하여 'click' 이벤트 발생 시
+	// btn_click 함수를 실행하겠다는 거.
+	// 변수명.addEventListener('이벤트 종류', 이벤트시 실행될 함수명);
+
+	function btn_click() {
+		alert('이벤트 발생 3');
+	}
+	// 하지만 이렇게만 하면 안 됨. body가 뜨기 전에 실행되어버렸잖아.
+	// 그래서 window.onload로 화면이 실행되기 전까지 기다린 후 실행해야 해
+	// (실제로 브라우저에서 Cannot read property 'addEventListener' of null 뜸.)
+
+	window.onload = function() {
+
+		var btn = document.getElementById('btn');
+		btn.addEventListener('click', function() {
+			alert('이벤트 발생 3');
+		});
+
+	}
+</script>
+
+</head>
+<body>
+
+  <input type='button' value='눌러' id='btn' />
+
+</body>
+</html>

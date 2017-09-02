@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>리터럴 함수</title>
+</head>
+<body>
+  <script>
+			// 1. 자바스크립트의 함수는 데이터형의 일종
+			var multiple = function(first, second) {
+				return first * second;
+			}
+
+			document.write("multiple(4, 5)실행, 곱은: " + multiple(4, 5) + '<br/>');
+			document.write("multiple 값은?: " + multiple + '<br/>');
+			multiple = 10;
+			document.write("multiple = 10; 후, 다시 multiple 값 출력: " + multiple
+					+ '<br/>');
+
+			// 2. 자바스크립트는 파라미터수를 체크하지 않습니다.
+			document.write("multiple(4, 5): " + multiple(4, 5) + '<br/>');
+			document.write("multiple(4, 5, 6): " + multiple(4, 5, 6) + '<br/>');
+			// 원래 multiple()는 2개를 받아야 하는 데
+			// 뒤에 인자가 하나 더 들어와서 총 3개의 인자를 받았음.
+			// 하지만 계산되는 건 앞의 2개 인자 일 뿐이고 에러표출 안 함.
+			// 자동으로 마지막에 들어온 인자는 무시됨.
+
+			document.write("multiple(4): " + multiple(4) + '<br/>');
+			// 기본으로 인자를 2개 받아야 하는 데 1개만 받았어.
+			// 자동으로 2번째 인자를 undefined처리하고 계산해버려. 에러표출 안 함.
+			// 다만 숫자가 아닌 걸 연산하니까 nan 출력됨. 
+
+			// 3. 자바스크립트에서는 여러 개의 인자들을 익명의 객체로 받을 수 있음.
+			var multiple = function(args) {
+				return args.first * args.second;
+				//args란 객체를 받아 args의 first변수와 second변수를 곱하겠다.
+
+			}
+
+			document.write('곱은 ' + multiple({
+				first : 3,
+				second : 5
+			}) + '<br/>');
+			// multiple({first: 3, second: 5})자체가
+			// 안에서 {first: 3, second: 5}로 객체를 생성하여
+			// multiple 안으로 던져넣음.
+			// first의 값을 3으로 주고 second 값을 5로 줘서
+			// 객체 생성과 동시에 변수의 값을 넣었던 것과 같다.
+			// var arr2 = []; 이건 배열이고
+			// var obj = { x:1, y:2, x:3 }; {}객체임. 객체라서 배열과 다름.
+		</script>
+</body>
+</html>

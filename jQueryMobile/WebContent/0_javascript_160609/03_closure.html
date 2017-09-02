@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>클로져</title>
+<script type="text/javascript">
+	// 클로져: 비공개 멤버를 가질 수 있는 함수 인스턴스의 생성자.
+	function func(x) {
+
+		return function(y) {// 리턴 자체가 함수네?
+
+			return x + y;
+		}
+	}
+
+	var foo = func(1);
+	//console.log('foo를 출력: ' + foo); // 이거 주석처리 안하면 무한루프 빠짐
+	console.log('foo(1): ' + foo(1));
+	console.log('foo(5): ' + foo(5));
+	// 결국 var foo는 아래와 같다 이거임.
+	// 	var foo = function(y) { // 리턴 자체가 함수임을 그대로 foo가 받아낸거 
+
+	// 		return 1 + y;
+	// 	}
+	// 그래서 책에서는 'x와 y를 비공개로 하고 func(x)만을 공개한다.' 라고 함.
+
+	function counting() {
+
+		var cnt = 0;
+		return function() {
+
+			return cnt++;
+		};
+	}
+
+	var countnum = counting();
+	console.log('countnum를 출력해봐: ' + countnum);
+	console.log(countnum());
+	console.log(countnum());
+	console.log(countnum());
+
+	var countnum1 = new counting();
+	// 실수로 객체를 생성할 때 쓰는 new를 함수 앞(counting())에 썼지만 위와 결과가 같아.
+	// 아마다ㅗ 자바스크립트는 객체와 함수를 섞는 듯?
+	console.log('실수로 new를 추가한 countnum1를 출력해봐: ' + countnum1);
+	console.log(countnum1());
+	console.log(countnum1());
+	console.log(countnum1());
+
+	// cnt=0 인데 왜 자꾸 1씩 증가하냐구?
+
+	// 리턴 부분만 실행했기 때문에 계속 값이 cnt++로 증가할 수 있었던 거야.
+	// 	var countnum = counting() {
+
+	// 		var cnt = 0;
+	// 		return function() {
+
+	// 			return cnt++;
+	// 		};
+	//}이게 아니라
+
+	// 	var countnum = function() {
+
+	// 		return cnt++;
+	// 	};이거니까. counting() 리턴부분의 cnt++만 실행되었어.
+	// var cnt = 0으로 계속 값이 초기화 된게 아니라는 거임.
+}
+</script>
+
+</head>
+<body>
+
+</body>
+</html>

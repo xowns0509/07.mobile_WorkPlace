@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>자바스크립트 변수와 범위</title>
+
+
+<script>
+
+/* //----글로벌 변수와 지역변수
+var scope = '글로벌변수';
+function getValue(){
+	var scope = '지역변수';
+	return scope;
+}
+
+document.write('1>' + getValue() + "<br/>"); //지역변수 출력
+document.write('2>' + scope + "<br/>");	//글로벌변수 출력 */
+
+//1. 자바스크립트에서는 변수를 선언할 때 var생략 가능.
+//var 생략 하면 전부 글로벌 변수로 취급함.
+//2. 지역변수는 함수의 가급적 앞에 선언. 그렇게 안하면 undefined
+scope = '글로벌변수';
+function getValue(){
+	document.write('0>' + scope + "<br/>");
+	//지금 위의 출력 문 내의 scope가 글로벌 변수를 
+	var scope = '지역변수';
+	return scope;
+}
+
+document.write('var생략 getValue2>' + getValue() + "<br/>");
+document.write('var생략 scope2>' + scope + "<br/>");
+
+//지역변수
+if(true){
+	var i = 100;
+}
+document.write('i= ' + i + '<br/>');
+
+//자바는 지역변수가 블록 안에서였지.
+//그러나 자바스크립트에서는 함수(function)안의 변수만 지역변수.
+//그래서 위의 i가 블록 밖인데도 유효해서 출력되는 거야.
+//if나 for 등의 블럭은 지역변수라고 제한하지 못함.
+
+for(var j = 0 ; j<4; j++){
+	
+}
+document.write('j=' + j = "<br/>");
+
+	</script>
+</head>
+
+<body>
+
+
+</body>
+</html>

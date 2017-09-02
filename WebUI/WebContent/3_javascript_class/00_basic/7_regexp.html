@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>RegExp 객체</title>
+<script type="text/javascript">
+	//자바스크립트 정규화코드
+	//아래의 수상한 코드가 바로 url 형식이 맞았는지 틀렸는 지를 확인하는 거.
+	var p = /http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w-.\/?%&=]*)?/gi;
+
+	//var p = new RegExp('http(s)?://([\\w-]+\\.)+[\\w-]+(/[\\w-./?%&=]*)?','gi');
+	var str = '한 번을 둘러봐야 하는 사이트 http://www.w3schools.com/ 입니다';
+	str += ' 또한 집중적으로 봐야하는 사이트 http://jqapi.ru/ 입니다';
+
+	//	str에서 url형식인 http://www.w3schools.com/과 http://jqapi.ru/만 딱 골라오는거
+
+	// 1. match()이용
+	// 매치함수를 이용하여 괄호안에 정규화코드인 p를 넣어 결과치를 받아냄.
+	// 그 결과치가 여러 개(위 str의 한글등을 제외한 순수url의 글자들.)이니 반복문으로 뽑아내는거고
+	var result = str.match(p);
+	for (var i = 0; i < result.length; i++) {
+		document.write(result[i] + "<br/>");
+	}
+
+	// 2. exec() 이용... 은 안 되.
+	//http://www.w3schools.com/,,w3schools.,/
+	//http://jqapi.ru/,,jqapi.,/
+	while ((result = p.exec(str)) != null) {
+		document.write(result + "<br/>");
+	}
+
+	// 3. test() 이용
+	var one = '한 번을 둘러봐야 하는 사이트 http://www.w3schools.com/ 입니다';
+	var other = ' 또한 집중적으로 봐야하는 사이트 http://jqapi.ru/ 입니다';
+
+	document.write("p.test(one)이용: " + p.test(one) + "<br/>");
+	document.write("p.test(other)이용: " + p.test(other) + "<br/>");
+	// 테스트 함수 사용시 주의할 점
+	// 하나만 걸려서 true 이면 나머지는 모두 false로 처리.
+	// 따라서 뭐 하나만 잡아내려면 test 사용하면 됨.
+
+	//(4) search() 이용
+	//인덱스 출력. 몇번 째에 내가 원하는 글자가 몇 번째부터 들어가는지
+	document.write(one.search(p) + "<br/>");
+</script>
+</head>
+<body>
+
+</body>
+</html>

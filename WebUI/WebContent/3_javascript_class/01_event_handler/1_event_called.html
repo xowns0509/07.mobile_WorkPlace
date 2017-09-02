@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>이벤트 핸들러 연결</title>
+
+<script type="text/javascript">
+	/* 바로 아래의 함수는 예전 방식... 이지만 이것도 사용 중
+	왜 예전방식이냐면 구조를 의미하는 html의 바디부분에
+	onclick='btn_click5()'으로 함수를 호출하려 하잖아.
+	지금은 구조와 표현, 동작을 따로 구분하려는,
+	원본은 가능한 한 건들지 않겠다고.*/
+	function btn_click5() {
+		alert('btn_click5 버튼 이벤트 발생')
+	}
+
+	// 처음에 변수 btn_click은 숫자 1000이었다.
+	var btn_click = 1000;
+	document.writeln(btn_click);
+	alert(btn_click);
+
+	// 그러다가 "문자열임" 이란 문자열이 삽입.
+	btn_click = "문자열임";
+	document.writeln(btn_click);
+	alert(btn_click);
+
+	// 마지막에 btn_click에다 함수를 넣었다.
+	// 자바스크립트에선 함수도 자료형. 그래서 변수지정이 가능하다.
+	var btn_click = function() {
+		alert('버튼 이벤트 발생');
+	};
+
+	/* 	또한 script내의 기술내용은 프로그램이기에 따로 호출 않고 자동적으로 페이지 로딩시 실행.
+	 위의 얼럿(1000, "문자열임") 2개는 페이지를 열자마자 실행되는 것.
+	 이 안에 기술된 함수는 기본적으로 호출 했을 때 실행하는 거고.
+	 누가 호출해? body부분의 input이. onclick='btn_click()'으로 함수호출을 등록했잖아. */
+</script>
+
+</head>
+
+<body>
+  <input type='button' value='btn_click버튼. 눌러' onclick='btn_click()' />
+  <input type='button' value='btn_click5버튼. 눌러' onclick='btn_click5()' />
+
+</body>
+</html>

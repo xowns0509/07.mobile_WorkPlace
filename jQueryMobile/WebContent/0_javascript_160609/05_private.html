@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>자바스크립트에서 객체 생성</title>
+<script type="text/javascript">
+	function MyClass() {
+		var msg;
+		// 멤버변수지만 private 개념.
+		this.setMessage = function(m) {
+			msg = m;
+		}
+		this.getMessage = function() {
+			return msg;
+		}
+	}
+
+	var obj = new MyClass();
+	obj.setMessage('안녕하세요');
+	console.log("접근: " + obj.getMessage());
+	console.log("접근: " + obj.msg); //언디파인드 뜸.
+	// getMessage
+	// var 쓰면 지역변수니까...
+	// var 빼면? 지역변수. private 개념.
+	// msg 만 달랑 쓴다고 해서 선언이 안된게 아니야
+
+	//변수의 경우가 3가지인 경우가 있어 결국.
+
+	function MyClass2() {
+		this.msg;
+
+		var msg; //var 썼어. 지역변수. 객체 안에다가 var 썼으니 private과 비슷하잖아. 이 블럭 안에서만 유효하니까.
+		msg = 1; //var 안썼어. 전역변수. 누구나 사용하는.
+		this.msg = 1; // this 썼어. 멤버변수. 객체 안에만 존재하는.
+		// 지역변수는 정확히 말하면 블럭변수... 블럭 안에서만 유효하니까.
+		// this붙이면 이 클래스의 멤버변수가 됬기 때문에 객체의 변수로서 접근 가능하잖아.
+
+		// 멤버변수지만 private 개념.
+		this.setMessage = function(m) {
+			this.msg = m;
+		}
+		this.getMessage = function() {
+			return this.msg;
+		}
+	}
+
+	function MyMember(p) {
+		var point = p || 30;
+		function _getPoint() {
+			return point;
+		}
+
+		function _setPoint(p) {
+			return point = p;
+		}
+
+	}
+
+	var member = new MyMember(100);
+	console.log(member);
+	//console.log(member._getPoint());
+	// 그냥 이렇게 쓰면 에러뜸. 함수가 아니라고 떠. 접근 불가.
+	//Uncaught TypeError: member._getPoint is not a function
+
+	function MyMember1(p) {
+		// var 변수선언이거나 function 명령어는 마치 private 취급
+
+		var point = p || 30;
+		function _getPoint() {
+			return point;
+		}
+
+		function _setPoint(p) {
+			return point = p;
+		}
+
+		//위의 var와 function 2개를 private처럼 할 수 있다고.
+		// 누구를 공개하고 혹은 공개 안할 지를 조정 가능하다는 거
+
+		return {
+			getPoint : _getPoint,
+			setPoint : _setPoint
+		}
+
+	}
+
+	var member1 = new MyMember1();//100을 안넣으면 30이 나와야 해.
+	console.log(member1);
+	console.log(member1.getPoint());
+</script>
+
+</head>
+<body>
+
+</body>
+</html>

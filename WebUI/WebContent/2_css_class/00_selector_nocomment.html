@@ -1,0 +1,119 @@
+<!-- 현재 input:nth-child가 작동 안 되고 input:nth-last-child(3)가
+아래 2번째 input에서 작동 됨. 한글 주석때문에 제대로 안되는 걸로 판별됨. 
+주석을 모두 삭제한 00_selector_nocomment.html에서 정확한 결과 확인가능 -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>연습</title>
+
+<style type="text/css">
+/*css 주석처리*/
+
+/*대상은 태그로 찾는 방법, 클래스로 찾는 방법, ID로 찾는 방법.
+태그 가중치1, 클래스 가중치10, I 가중치 100.
+클래스가 태그보다 가중치가 높아
+아이디가 클래스보다 가중치가 높아.
+여기서 cyan은 클래스로 적용해줬으므로
+위의 특성을 덮어버렸음.
+
+디자이너가 만든 원본을 건들지 말되
+가중치를 이용하여 색깔과 모양을 바꿔라. */
+body>div {
+	color: pink; /*16진수*/
+}
+
+div {
+	color: red;
+}
+/* 가중치가 동일하면 아랫걸로 덮어버림. 아랫걸로 덮어버리는 코딩상황에서도
+ 붉은 색을 나오게 하고 싶으면 body > div{ color : yellow; } 이렇게 적용. 이 경우 
+엘리먼트 합산에 의해 가중치가 1이 아니라 2다. body + div 각각 1씩 더하여.  */
+#point100 {
+	color: orange;
+}
+
+.point10 {
+	color: cyan;
+}
+/* 아래 두 div 태그 모두 클래스가 point10이라 cyan으로 색이 적용되어야 하지만 */
+/* 위에 이미 id로 point가 100인 놈이 orange로 적용된다고 기술되어있다. */
+/* 가중치가 id는 100점이므로 orange로 적용된다. */
+
+/* 인풋놈들 중에 type이 text인 놈들만 적용.
+input[type=text] input과 붙여야 함.
+input [type=text] 이렇게 중간에 공백들어가면 안 먹힘. */
+input[type=text] {
+	border: 4px solid #49AB3C;
+}
+
+/* 인풋놈들 중 맨 위에 있는 놈만 적용. */
+input:first-of-type {
+	border: 2px dotted cyan;
+}
+
+/* 1. input 태그에서 마지막 요소만 빨강색 테두리 점선 지정 */
+input:last-of-type {
+	border: 2px dotted red;
+}
+
+/* 2. input 태그중에서 5번째 요소만 녹색 테두리 dashed선 지정 */
+input:nth-child(1) {
+	border:2px solid red;
+}
+
+/* 3. input 태그중에서 뒤에서 3번째 요소만 노랑색 테두리 실선 지정 */
+input:nth-last-child(3) {
+	border: 5px solid yellow;
+}
+
+/* 4. input 태그중에서 disabled 된 요소만 파랑색 테두리 실선 지정*/
+input:disabled {
+	border: 2px solid blue;
+}
+</style>
+</head>
+<body>
+
+  <!-- '안녕하세요'를 빨간색으로 만들고 싶어.
+  그럼 div 태그에다 style 속성을 줄 수도 있겠지만
+  현재는 그렇지 않고 상단의 <style>영역 안에다 기술하거나
+  외부파일을 불러온다고. -->
+  <div>안녕하세요 div 태그1</div>
+  <div>안녕하세요 div 태그1</div>
+  <div id="point100" class="point10">안녕하세요 class = point 10, id = point100</div>
+  <div class="point10">안녕하세요 class = point 10</div>
+
+  <p>
+    <input type="text" value="입력1">
+    <br />
+    <input type="checkbox"> 선택
+    <br />
+    <input type="radio" name="rd" checked="checked"> 예 <input type="radio" name="rd"> 아니오
+    <br />
+    <input type="text" value="입력2" disabled="disabled">
+    <!-- disabled는 텍필드의 글자를 수정할 수 없는 상태로 지정. -->
+    <br />
+    <input type="button" value="확인"> <input type="button" value="취소">
+    <br />
+    <input type="text" value="입력3 input8">
+    <br />
+    <input type="text" value="입력4 input9">
+    <br />
+    <input type="text" value="입력5 input10">
+    <br />
+    <input type="text" value="입력6 input11">
+    <br />
+    <input type="text" value="입력7 input12">
+        <br />
+    <input type="text" value="입력8 input13">
+        <br />
+    <input type="text" value="입력9 input14">
+        <br />
+    <input type="text" value="입력10 input15">
+    
+  </p>
+
+
+</body>
+</html>

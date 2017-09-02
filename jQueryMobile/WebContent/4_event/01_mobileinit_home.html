@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>jQuery Mobile</title>
+<meta charset="euc-kr" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+
+<link rel="shortcut icon" href="../image/icon.png">
+<link rel="apple-touch-icon" href="../image/icon.png">
+
+<link rel="stylesheet" href="../jQueryLibs/jquery.mobile-1.4.5.css" />
+<script src="../jQueryLibs/jquery-1.11.1.js"></script>
+
+<!-- #################################  -->
+<!-- mobileinit 이벤트 처리는 jquery.js 로딩 전에 기술  -->
+<script type="text/javascript">
+			$(function).bind("mobileinit", function(){
+				$.mobile.defaultPageTransition="flow";
+				
+				$.mobile.loader.prototype.options.text="기다려";
+				$.mobile.loader.prototype.options.textVisible=true;
+// 				$.mobile.loader.prototype.options.text="기다려";
+// 				$.mobile.loadingMessageTextVisible=true;
+$.mobile.loader.prototype.options.theme="e";
+				$.mobile.loadingMessageTheme='e';
+				
+				//mobile객체는 아래 1.4.5가 갖고 있음
+			})
+		</script>
+
+<!-- 모바일 이전에 있어야 해 -->
+<script src="../jQueryLibs/jquery.mobile-1.4.5.min.js"></script>
+</head>
+
+<body>
+	<div data-role="page">
+		<div data-role="header">
+			<h1>홈 페이지</h1>
+		</div>
+		<div data-role="content">
+			<a href="01_mobileinit_second.jsp" data-role="button">눌러</a>
+		</div>
+	</div>
+</body>
+</html>

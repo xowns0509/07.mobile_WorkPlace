@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>폼 예제 2</title>
+</head>
+<script type="text/javascript">
+	function moveUp() {
+		var idxSel = document.frm.play.selectedIndex; // 몇 번째 눌렸는지 알기 위해.
+		var strSel = document.frm.play.options[idxSel].text;// 선택한 놈의 글씨 얻어오기.
+
+		//alert(idxSel + "번째 " + strSel);
+		/*	if(idxSel > 0){
+				document.frm.play.options[idxSel].text = document.frm.play.options[idxSel-1].text
+				document.frm.play.options[idxSel-1].text = strSel;
+				document.frm.play.options[idxSel-1].selected = true;
+			} */
+		// 원래 위와 같이 만들어야 하지만
+		// document.frm.play가 중복되므로 이걸 변수로 만들어 준다면.
+		// 코드의 양을 줄일 수 있음.
+		var play = document.frm.play;
+		if (idxSel > 0) {
+
+			play.options[idxSel].text = play.options[idxSel - 1].text;
+			play.options[idxSel - 1].text = strSel;
+			play.options[idxSel - 1].selected = true;
+
+		} else {
+
+			var temp = play.options[0].text; //눌린 번지(idxSel)를 임시저장소에다 넣고 
+
+			for (var i = 1; i < play.length; i++) {
+				play.options[i - 1].text = play.options[i].text;
+			}
+
+			play.options[play.length - 1].text = temp;
+			play.options[play.length - 1].selected = true;
+
+		}
+	}
+
+	function moveDw() {
+		var idxSel = document.frm.play.selectedIndex; // 몇 번째 눌렸는지 알기 위해.
+		var strSel = document.frm.play.options[idxSel].text;// 선택한 놈의 글씨 얻어오기.
+
+		var play = document.frm.play;
+
+		if (idxSel < play.length - 1) {//인덱스 4까지 만 작동하도록.
+
+			play.options[idxSel].text = play.options[idxSel + 1].text
+			// 눌린 번지(idxSel)에 그거보다 +1을 한 번지의 Value를 넣고
+
+			play.options[idxSel + 1].text = strSel;
+			// +1 한 번지에는 strSel을 넣음(눌렀던 놈의 값을 저장했던 놈).
+
+			play.options[idxSel + 1].selected = true;
+
+		} else {
+
+			var temp = play.options[play.length - 1].text;
+			// 눌린 번지(idxSel)를 임시저장소에다 넣고 
+
+			for (var i = (play.length - 2); i >= 0; i--) {
+				play.options[i + 1].text = play.options[i].text;
+			}
+
+			play.options[0].text = temp;
+			play.options[0].selected = true;
+
+		}
+	}
+</script>
+<body>
+
+  내가 제일 좋아하는 놀이 순서대로 한다면
+  <br>
+
+  <form name="frm">
+    <select name="play" size="8">
+      <option selected>숨쉬기</option>
+      <option>밥먹기</option>
+      <option>그냥있기</option>
+      <option>잠자기</option>
+      <option>술먹기</option>
+      <option>멍때리기</option>
+    </select>
+    <br>
+    <input type="button" value="▲" onclick='moveUp()'>
+    <br>
+    <input type="button" value="▼" onclick='moveDw()'>
+    <br>
+    <br>
+  </form>
+
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!--  web Storage
+모바일 웹에서는
+1. local storage
+- 파일 저장
+ - 영구 저장
+ 
+2. session storage
+메모리 저장
+현재 브라우저 현 탭에서만 사용 가능
+
+기존의 쿠키를 개선
+
+1. 네트워크 트래픽 감소
+쿠키는 매번 요청(request)마다 같이 갖고가야 했다. 트래픽에.
+그래서 지금의 것은 네트워크 트래픽을 감소시킴. web storage 는 http 요청에 포함되지 않으므로.
+또한 모바일 자체가 완벽하지 않거든. 데이터 전송 시에. 그래서 쿠키는 완벽하지 않은 모바일 네트워크 인프라에 취약하기도 하지.
+
+2. 더 많은 저장 용량. 
+기존의 쿠키는 4KB 제한이 있었던 것에 반해
+Web Storage는 제한은 없지만 보통 5MB 정도 까지 가능.(단, 브라우저 마다 차이)
+
+3. 데이터 영구보존. 사용자가 지우기 전까지는.
+쿠키는 만료기간이 있었다. 그러나 web Storage는 영구보존
+
+4. 객체 저장
+쿠키는 문자열만 저장했었지만 web storage는 객체 저장
+
+
+속성 및 메소드
+length : 저장된 데이터 수
+key(n) : n번째 키 리턴
+getItem(key): 주어진 키의 값을 리턴
+setItem(key, value): 저장
+removeItem(key) : 지정한 키의 데이타 삭제
+clear(): 모든 데이터 삭제
+
+[추가] 삭제 버튼을 만들어 해당 데이터를 삭제.
+
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="euc-kr" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, 
+							maximum-scale=1.0, minimum-scale=1.0, 
+							user-scalable=no" />
+<script type="text/javascript">
+	function saveLocalStorage() {
+
+
+		if (window.localStorage) {
+			var local = document.querySelector('#localStorage');
+			window.localStorage.setItem('localStorage', local.value);
+
+		} else {
+			//else로 떨어지면 모바일이 스토리지 기능을 지원하지 않는다는 거임.
+
+		}
+
+	}
+	
+	function delLocalStorage() {
+		var local = document.querySelector('#localStorage');
+		window.localStorage.removeItem(localStorage);
+
+	}
+	
+	function saveSessionStorage() {
+
+
+		if (window.sessStorage) {
+			var sess = document.querySelector('#sessStorage');
+			window.sessStorage.setItem('sessStorage', sess.value);
+
+		} else {
+			
+
+		}
+
+	}
+	
+	function delSessionStorage() {
+
+	}
+
+	
+</script>
+
+</head>
+
+<body>
+	<h3>Local Storage</h3>
+	<button onclick="saveLocalStorage()">저장</button>
+	<input id="localStorage" type="text" />
+	<br />
+	<button onclick="readLocalStorage()">조회</button>
+	<span id="span1"></span>
+	<br />
+	<button onclick="delLocalStorage()">삭제</button>
+
+	<h3>Session Storage</h3>
+	<button onclick="saveSessionStorage()">저장</button>
+	<input id="sessStorage" type="text" />
+	<br />
+	<button onclick="readSessionStorage()">조회</button>
+	<span id="span2"></span>
+	<br />
+	<button onclick="delSessionStorage()">삭제</button>
+	
+</body>
+</html>

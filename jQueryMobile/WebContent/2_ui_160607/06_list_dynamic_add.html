@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>jQuery Mobile</title>
+<meta charset="euc-kr" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+
+<link rel="shortcut icon" href="../image/icon.png">
+<link rel="apple-touch-icon" href="../image/icon.png">
+
+<link href="../jQueryLibs/jquery.mobile-1.4.5.min.css" rel="stylesheet" type="text/css" />
+<script src="../jQueryLibs/jquery-1.11.1.js"></script>
+<script src="../jQueryLibs/jquery.mobile-1.4.5.min.js"></script>
+
+
+
+<script type="text/javascript">
+	// add 버튼으로 동적 목록추가 하기
+	var num = 3;// 초기에 갖고 있는 리스트 갯수
+
+	function addItem() {
+
+		var ulList = document.getElementById('list1');
+		var addLi = document.createElement('li');
+		var addA = document.createElement('a');
+
+		addA.appendChild(document.createTextNode("추가 목록"));
+		addLi.appendChild(addA);
+		ulList.appendChild(addLi);
+
+	}
+</script>
+</head>
+
+<body>
+	<div data-role="page">
+		<div data-role="header">
+			<h1>Dynamic AddItem</h1>
+			<a href="javascript:addItem();" data-icon="plus" class="ui-btn-right">Add</a>
+		</div>
+
+		<div data-role="content">
+			<ul id="list1" data-role="listview">
+				<li><a href="#">Item 1</a></li>
+				<li><a href="#">Item 2</a></li>
+				<li><a href="#">Item 3</a></li>
+			</ul>
+		</div>
+	</div>
+</body>
+</html>
+

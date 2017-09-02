@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<style type="text/css">
+body {
+	background-color: #9933FF;
+}
+
+div {
+	font-size: 40px;
+	font-family: "맑은 고딕";
+	color: 'skyblue';
+}
+/*스타일시트는 하이픈표기*/
+</style>
+
+<script type="text/javascript">
+	// 스타일시트는 언더바표기
+	// 스크립트에서는 낙타표기
+	function changeStyle1() {
+		document.body.style.backgroundColor = 'cyan';
+		//바디부분의 스타일 변경.
+
+		document.div.style.color = 'yellow';
+		//Cannot read property 'style' of undefined 발생. 
+		//도큐먼트의 div에 스타일 주는데 컬러를 변경.
+
+	}
+
+	// 밑의 onmouseover에 걸린 changeStyle(this)를 여기서 받음.
+	// this를 elem을 통해 받아내겠지.
+	function changeStyle(elem) {
+
+		document.body.style.backgroundColor = 'skyblue';
+		elem.style.color = 'blue';
+		//도큐먼트.div에 스타일 주는데 컬러를...
+
+	}
+</script>
+</head>
+<body>
+
+  <!-- onmouseover 마우스 올라갔을 때 함수 실행. -->
+  <div onmouseover="changeStyle1()">순대국</div>
+  <div onmouseover="changeStyle1()">감자탕</div>
+  <div onmouseover="changeStyle1()">삼계탕</div>
+
+  <!-- 마우스 올라간 놈만 색깔 변경하고자 할 때? -->
+  <!-- 인자를 주면 되. 자기자신을. 그것이 this. -->
+  <!-- 이 '순대국'이란 글자만의 속성(색깔이나 기타 등)을 변경하기 위해. -->
+  <div onmouseover="changeStyle(this)">+this 순대국</div>
+  <div onmouseover="changeStyle(this)">+this 감자탕</div>
+  <div onmouseover="changeStyle(this)">+this 삼계탕</div>
+
+
+</body>
+</html>

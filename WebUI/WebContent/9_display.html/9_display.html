@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+span {
+	display: none;
+}
+
+input:focus+span {
+	display: inline;
+}
+/* 텍필드에 포커스 갔을 때 글자가 나타남 */
+
+input:focus+span {
+  display: block;
+}
+/* css에서의 block 개념은 무조건 개행
+블락 요소들은 항상 개행된다
+h, i, p태그들...
+
+span태그들은 인라인 요소들.
+개행이 되는게 아니라 옆으로 붙는거임
+
+그래서 개행을 안먹히게 하고 싶다면 inline을 쓰는거고
+보여주면서 강제로 개행하고 싶으면 block쓰면 됨. */
+
+</style>
+
+</head>
+<body>
+
+  <input type='text' />
+  <span>한글로 5자 이내 입력하세요</span>
+
+</body>
+</html>

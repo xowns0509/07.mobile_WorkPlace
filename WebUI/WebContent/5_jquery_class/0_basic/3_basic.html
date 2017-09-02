@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<!-- jQuery 를 이용하여 확인 버튼이 눌렸을 때 사용자가 입력하거나
+선택한 값들을 alert 출력. val() -->
+<script type="text/javascript" src="../lib/jquery-2.0.1.min.js"></script>
+<script type="text/javascript">
+
+	$(document).ready(function() {//제이쿼리의 ready
+
+		// 		$('#sel').click(function(){
+		// 			val('#sel');
+		// 		}
+
+		//초기화 지정: val()
+// 		텍스트필드: 이름을 입력하세요
+// 		텍스트 에어리어 : 게시글 쓰세요
+// 		콤보박스: 서울/분당 선택
+		$('#tf').val('엄태준');
+		$('#ta').val('게시글을 쓰세요');
+		$('#sel').val(['서울', '분당']);
+		
+
+
+		$('#check').click(function() {
+			
+			var input = $('#tf').val();
+			var ta = $('#ta').val();
+			var sel = $('#sel').val();
+			
+			alert(input + ta + sel);
+		});
+
+	});
+</script>
+<title>Insert title here</title>
+
+
+
+</head>
+<body>
+
+  <input type="text" id='tf' size='20' />
+  <textarea id='ta' rows="10" cols="30"></textarea>
+  <select id='sel' multiple="multiple" size = '20'>
+    <!-- 여러 개를 선택하게 하려면 multiple="multiple" -->
+    <option value='서울'>서울</option>
+    <option value='판교'>판교</option>
+    <option value='성남'>성남</option>
+    <option value='분당'>분당</option>
+    <option value='수원'>수원</option>
+    <option value='가산'>가산</option>
+  </select>
+  <input type='button' id='check' value='확인'>
+
+</body>
+</html>

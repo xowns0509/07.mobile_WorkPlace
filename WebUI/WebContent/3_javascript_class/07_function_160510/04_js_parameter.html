@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>파라메터 인자</title>
+<script>
+
+// 기본형을 파라메타로 전달
+var pri = 10;
+function priParam(pri){
+	pri--;
+	return pri;
+}
+
+document.write('기본형 인자> ' + priParam(pri) + '<br/>');
+document.write('기본형 값> ' + pri + '<br/>');
+//원본 pri = 10을 안 건드림. 콜바이밸류.
+
+var ref = [1,2,3,4,5];
+function refParam(ref){
+	ref.pop(); //하나 빼주고
+	return ref;
+}
+
+document.write('참조형 인자> ' + refParam(ref) + "<br/>");
+document.write('참조형 값> ' + ref + "<br/>");
+//원본이 침해당함. 콜바이 레퍼런스.
+
+	</script>
+</head>
+
+<body>
+
+
+</body>
+</html>

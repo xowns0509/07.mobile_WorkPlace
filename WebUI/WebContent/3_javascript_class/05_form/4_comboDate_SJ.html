@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>4_comboDate.html</title>
+<script type="text/javascript">
+	/*
+	 * 1. 올해 연도를 기준으로 -5에서 +5로 년도 값을 지정
+	 * 2. 월과 일을 지정
+	 * (일 값은 달마다 변경되니 알아서 잘 생각하길!)
+	 * 3. 오늘의 날짜로 초기화
+	 */
+	onload = function() {
+		var frm = document.frm;
+		var myDay = new Date();
+		// 년, 월 콤보박스 세팅
+		for (var i = 0; i <= 10; i++) {
+			frm.y.add(new Option(myDay.getFullYear() - 5 + i));
+		}
+		for (var i = 1; i <= 12; i++) {
+			frm.m.add(new Option(i));
+		}
+		
+		// 현재 년, 월로 세팅
+		frm.y.options[5].selected = true;
+		frm.m.options[myDay.getMonth()].selected = true;
+
+		function setCalendar() {
+			var idxYear = frm.y.selectedIndex;
+			var idxMonth = frm.m.selectedIndex;
+
+			var lastDay = new Date();
+			lastDay.setFullYear(frm.y.options[idxYear].text);
+			lastDay.setMonth(frm.m.options[idxMonth].text);
+			lastDay.setDate(0); // 해당 월의 마지막 날짜를 알 수 있음
+			// 일 콤보박스 세팅
+			for (var i = 1; i <= lastDay.getDate(); i++) {
+				frm.d.add(new Option(i));
+			}
+		}
+
+		setCalendar();
+		// 현재 일로 세팅
+		frm.d.options[myDay.getDate() - 1].selected = true;
+
+		frm.y.onchange = changeYear;
+		frm.m.onchange = changeMonth;
+
+		function changeYear() {
+			frm.m.options[0].selected = true;
+			frm.d.length = 0;
+			setCalendar();
+			frm.d.options[0].selected = true;
+		}
+		function changeMonth() {
+			frm.d.length = 0;
+			setCalendar();
+			frm.d.options[0].selected = true;
+		}
+
+		frm.btn.onclick = showDay;
+		function showDay() {
+			var calDay = new Date();
+			var week = new Array('일', '월', '화', '수', '목', '금', '토');
+			calDay.setFullYear(frm.y.options[frm.y.selectedIndex].text);
+			calDay.setMonth(frm.m.options[frm.m.selectedIndex].text - 1);
+			calDay.setDate(frm.d.options[frm.d.selectedIndex].text);
+			frm.w.value = week[calDay.getDay()];
+		}
+	}
+</script>
+</head>
+<body>
+  <form name="frm" method='get' action="server.jsp">
+    <select name="y"></select>
+    년
+    <select name='m'></select>
+    월
+    <select name='d'></select>
+    일 <input type='button' name='btn' value='☞☞'> <input type='text' name='w' size='4'>요일 입니다.
+  </form>
+</body>
+</html>

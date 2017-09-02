@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>1_basic.html</title>
+
+<style type="text/css">
+#here10 {
+	background-color: #AABB33;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+#here11 {
+	background-color: #AAff33;
+	position: absolute;
+	top: 600;
+	left: 800;
+}
+</style>
+
+<!-- 내부적 jQuery 방법 -->
+<!-- <script type="text/javascript" src = '../lib/jquery-1.9.1.js'> -->
+<!-- 상품 런칭할 때는 '../lib/jquery-1.9.1.min.js'을 사용. 뒤에 .min붙은 거 -->
+
+<!-- 외부적 jQuery 방법: CND 방식 -->
+<!-- 다만, jQuery 자체가 하위 버전이 호환됨을 보장하지 않으므로 주의 -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+
+<script>
+	$('#here').hide();
+	// id로 부여한걸 찾아내야 하니 #
+	// 클래스였다면 '.here'
+
+	// 근데 이것만 달랑 기술해 두면 안 됨. $('#here')자체가 body안에서 찾겠다는 의미인데
+	// 화면이 뜨기 전에 $('#here').hide();가 실행되므로 아무반응도 없음
+	// 따라서 화면에 뜰 때까지 기다려야지. 그래서 아래와 같이 기술.
+
+	//
+	//1. jQuery 함수사용은 원래 아래와 같았으나
+	jQuery(function($) {
+		$('#here').hide();
+	});
+
+	//2. 현재는 이게 정상이고
+	$(document).ready(function() {
+		$('#here').hide();
+	});
+
+	//3. 이건 정상을 축약한거
+	$(function() {
+		//$('#here').hide();
+
+		$('#here1').click(function() {
+			$('#here1').text('마우스 클릭');
+		});
+		//정식으로 쓰려면 이거.
+		//$('#here1').click(function() {
+		//	$('#here1').text('마우스 클릭');
+		//});
+
+		$('#here2').mouseenter(function() {
+			$('#here2').text('mouseenter: 마우스가 들어왔어요');
+		});
+
+		$('#here3').mouseleave(function() {
+			$('#here3').text('mouseleave: 마우스 leave');
+		});
+
+		$('#here4').mouseout(function() {
+			$('#here4').text('mouseout: 마우스가 나갔답니다');
+		});
+
+		//매번쓰기 귀찮아서 $('#here5')를 h로 변수잡고 간단히 할 수도 있음.
+		var h = $('#here5');
+
+		//호버는 동작이 2개가 되어야 하므로 function을 2개를 기술.
+		h.hover(function() {
+			h.css('border', '40px solid green');
+		}, function() {
+			h.css('border', '20px dashed cyan');
+		});
+		//마우스가 나갔을 때도 글씨 출력.
+
+		//제이쿼리의 단점
+		//1.3에서 됬는데 1.4에서 안된다면 1.3을 써야 함.
+		//상위 버전이 하위버전을 완전히 포함하는 게 아냐.
+		//--------------------------------------------------------
+
+		$('#here6').fadeOut(2000);
+		$('#here7').fadeIn(2000);
+		$('#here8').fadeOut(2000).fadeIn('slow');
+		//펑션체인. fadeIn(2000)됬다가 fadeIn('slow')실행.
+		//안에 숫자 단위는 밀리세컨드로 2000은 2초를 의미
+		//숫자되신 글자로 넣어도 됨.
+		$('#here9').slideUp(1000).slideDown(1000);
+
+		$('#here10').animate({
+			top : 200,
+			left : 400
+			// 스타일태그에서 #here10로 안 주면 animate함수 작동 안 함.
+			// 스타일에서 기준을 잡아준 걸(top: 0, left: 0)로 움직이니까
+		});
+		
+		$('#here11').slideUp(1000).slideDown(1000).animate({
+			top : 300,
+			left : 500
+		});	
+
+	});
+</script>
+
+</head>
+<body>
+
+  따로 div 안 준 글자임: 맛난 점심.
+  <!-- 찾아내려면 태그를 써줘야지 -->
+  <div id='here'>here hide 실험. 이건 아예 안나타날거 임.</div>
+  <div id='here1'>here1 click 실험.</div>
+  <div id='here2'>here2 mouseenter 실험.</div>
+  <div id='here3'>here3 mouseleave 실험.</div>
+  <div id='here4'>here4 mouseout 실험.</div>
+  <div id='here5'>
+    here5 hover 실험.<br />
+  </div>
+  <div id='here6'>here6 fadeOut(2000) 실험.</div>
+  <div id='here7'>here7 fadeIn(2000) 실험.</div>
+  <div id='here8'>here8 펑션체인 fadeOut(2000).fadeIn('slow') 실험.</div>
+  <div id='here9'>here9 펑션체인 slideUp(1000).slideDown(1000) 실험.</div>
+  <div id='here10'>here10 animate 실험.</div>
+  <div id='here11'>here11 펑션체인 slideUp(1000).slideDown(1000).animate 실험.</div>
+
+</body>
+</html>

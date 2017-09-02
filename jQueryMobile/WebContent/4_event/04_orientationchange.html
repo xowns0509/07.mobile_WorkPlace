@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>jQuery Mobile</title>
+<meta charset="euc-kr" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+
+<link rel="shortcut icon" href="../image/icon.png">
+<link rel="apple-touch-icon" href="../image/icon.png">
+
+<link rel="stylesheet" href="../jQueryLibs/jquery.mobile-1.4.5.css" />
+<script src="../jQueryLibs/jquery-1.11.1.js"></script>
+<script src="../jQueryLibs/jquery.mobile-1.4.5.min.js"></script>
+
+<script type="text/javascript">
+	$(function() {
+		//모바일 이벤트:
+		if (window.orientation == 0) {
+			$('#backImg').attr('src', "../image/big-image-portrait.png");
+		} else {
+			$('#backImg').attr('src', "../image/big-image-landscape.png");
+		}
+
+		$(window).bind("orientationchange"), function(evt) {
+			if (evt.orientation == 0) {
+				$('#backImg').attr('src', "../image/big-image-portrait.png");
+			} else {
+				$('#backImg').attr('src', "../image/big-image-landscape.png");
+			}
+
+		};
+	});
+
+		// 		console.log(window.orientation);
+		// 		alert(window.orientation);
+</script>
+</head>
+
+<body>
+	<div data-role="page">
+		<div data-role="content" style="padding: 0px">
+			<img id="backImg" src="" />
+		</div>
+	</div>
+</body>
+</html>

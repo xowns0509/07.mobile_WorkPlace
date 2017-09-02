@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>9_calendar.html</title>
+
+<script type="text/javascript">
+	/* 현재 날짜의 해당하는 그 달을 달력으로 출력하세요 */
+
+	/* localhost:8080/WebUI/3_javascript_class/00_basic/9_calendar.html */
+	/* 전달 마지막 날 구하는거 */
+	// today.setDate(0); 전달의 마지막 날 세팅
+	var today = new Date();
+	today.setMonth(5);// 6월로 셋하고
+	today.setDate(0);// 이 달의 전달 마지막 날짜를 출력
+	document
+			.write("today.setMonth(5);로 6월로 셋하고 today.setDate(0);로 그 달 기준, 전달 마지막 날짜를 출력: "
+					+ today.toLocaleString() + "<br/>");
+	document.write("위에서 마지막 날짜만 출력: " + today.getDate() + "<br/>");
+
+	var lastday = today.getDate();
+	document.write("lastday 출력. 따로 변수로 저장이 되는지 안되는 지를 확인하기 위해. : " + lastday
+			+ "<br/>");
+	//이로서 이번 달의 마지막 날짜를 구했고
+
+	today.setMonth(4);// 다시 5월로 셋,
+	today.setDate(1);// 이 달 첫번째 날로 셋팅 후
+	document.write("다시 5월로 셋, 이 달 첫번째 날로 셋팅 후");
+	document.write("today.getDay()로 첫 번째 날이 어떤 요일인지 출력: " + today.getDay()
+			+ "<br/>");
+
+	document.write("today.getDate() 출력!!!!" + today.getDate());
+
+	document.write("<table border='2'>");
+	var k = 1;
+
+	for (var i = 0; i < 5; i++) {
+		document.write("<tr>");
+
+		for (var j = 0; j < 7; j++) {//0 = 일요일, 1 = 월요일.....
+			if (j == today.getDate() & k == 1) {
+				document.write("<td>" + k++ + "</td>");
+			} else if (k > lastday) {
+				document.write("<td>" + "</td>");
+			} else {
+				document.write("<td>" + k++ + "</td>");
+			}
+		}
+		document.write("</tr>");
+
+	}
+	document.write("</table>");
+
+	//0출력으로 일요일부터 시작
+
+	today.setMonth(5);
+	today.setDate(1);
+	document.write("today.setDate(1) 출력: " + today.toLocaleString() + "<br/>");
+	document.write("today.getDate() 출력: " + today.getDate() + "<br/>");
+	document.write("today.getDay() 출력: " + today.getDay() + "<br/>");
+
+	today.setDate(0);
+	document.write("today.setDate(0) 출력: " + today.toLocaleString() + "<br/>");
+	document.write("today.getDate() 출력: " + today.getDate() + "<br/>");
+	document.write("today.getDay() 출력: " + today.getDay() + "<br/>");
+
+	/* document.write("today 출력: " + today + "<br/>");
+	 document.write("today.setDate(0); 전달의 마지막 날 세팅 출력...은 의미가 없는 값: " + today.setDate(0) + "<br/>");
+	 document.write("today.toLocaleString()로 뽑아야 우리가 알아볼 수 있음: " + today.toLocaleString() + "<br/>");
+	 */
+	document.write("<br/>" + "<br/>");
+</script>
+
+</head>
+<body>
+
+</body>
+</html>

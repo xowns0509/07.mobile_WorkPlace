@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>Alert Test</title>
+<script type="text/javascript">
+	window.onload = init;
+
+	function init() {
+
+		document.getElementById("btn_alert").onclick = function() {
+
+			//1. alert - 메세지 창
+			alert('이 페이지는 http://www.kosta.or.kr로 리다이렉트 됩니다.');
+			location.href = "http://www.kosta.or.kr";
+		};
+
+		document.getElementById("btn_confirm").onclick = function() {
+
+			//2. confirm - 확인 취소 창
+			var res = confirm('이 페이지는 http://www.kosta.or.kr입니다. 이동하시겠습니까?');
+			//결과치를 받는 게 res. 확인을 누르면 true를, 취소를 누르면 false 반환. 
+			alert(res);
+			if (res)//res가 true일 때 location.href로 naver로 리다이렉트.  
+				location.href = "http://www.naver.com";
+		};
+
+		document.getElementById("btn_prompt").onclick = function() {
+			//3. prompt - 아예 사용자한테 물어보는 거
+			var inputText = prompt('니가 원하는 사이트를 적어라');
+			location.href = inputText;
+		};
+
+	}
+
+	// show_dialog()는 아래 body에 onload에 등록되었으므로
+	// 화면이 뜨면서 바로 실행됨.
+	function show_dialog() {
+		alert('이 사이트는 조만간 운영하지 않습니다.')
+	}
+</script>
+</head>
+<body onload="show_dialog()">
+  <!-- body에 onload로 페이지를 불러올 때 자동으로 실행되도록 함수 show_dialog()를 등록 -->
+
+  <input type='button' value='btn_alert' id='btn_alert' />
+  <input type='button' value='btn_confirm' id='btn_confirm' />
+  <input type='button' value='btn_prompt' id='btn_prompt' />
+</body>
+</html>

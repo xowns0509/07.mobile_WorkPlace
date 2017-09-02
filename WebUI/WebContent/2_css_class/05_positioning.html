@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Positioning</title>
+<!-- 포지셔닝 -->
+<style type="text/css">
+div#header {
+	border: 3px solid black;
+}
+
+div#left {
+	border: 3px dotted red;
+	width: 220px;
+	height: 100px;
+	float: left;
+	/* 일반적으로 div로 블럭킹하면
+	왼쪽으로 안가. 그래서 옆으로 가게끔 하는 게
+	float이야. */
+}
+
+div#content {
+	border: 3px dashed green;
+	width: 400px;
+	height: 400px;
+	float: right;
+}
+
+div#footer {
+	border: 3px groove blue;
+	clear: both;
+	/* id = footer인 div영역은 원래 밑부분에 위치해야하나
+	다른 div영역에 float 속성부여 할 시 헤더와 붙어버린다.
+	따라서 '양쪽 다 영향 받지 않겠다...' 라고 clear: both;를 기술해야 정상적으로 맨 밑으로 오게 됨.
+	이게 없으면 파란색 박스가 위로 올라가서 left div영역과 right div영역과 겹칩.
+	또는 다른 div영역에서도 바로위에서 준 float의 영향 안받겠다 하면 바로 다음 div단에 이걸 부여해야 함. */
+}
+
+/* 지금은 페이지 줄이기에 나름이지만(가로 사이즈의 크기에 따라 모양이 변경되지만 ) */
+/* 기본적으로 어떠한 형태는 반드시 고정시키게 하고 싶어? 그렇다면 wrap 적용 */
+#wrap {
+	width: 600px;
+	margin: 0px auto;
+}
+</style>
+
+<!-- 웹페이지를 인쇄시 스타일시트를 이용해 인쇄하지 않을 부분을 설정 할 수 있음. -->
+<style type="text/css" media="print">
+#header, #left, #footer {
+	display: none;
+}
+</style>
+
+<!-- 스타일시트영역을 추가로 잡을 수 있다. -->
+<style type="text/css" media="screen and (max-width:400px)">
+
+/* 휴대폰이라서 화면이 작다면~ 아래처럼하면 화면이 작아졌을 시 빨간색 박스가 사라짐*/
+/*반응형 웹*/
+#left {
+	display: none;
+}
+
+#content {
+	float: left;
+}
+</style>
+
+</head>
+<body>
+
+  <div id="wrap">
+    <div id="header">헤더영역</div>
+
+    <div id="left">왼쪽의 메뉴 영역</div>
+
+    <div id="content">
+      <ul>
+        <li>17세기 일본 돗토리번(鳥取藩)의 오야(大谷) 및 무라카와(村川) 양가는 조선 영토인 울릉도에서 불법 어로행위를 하다가 1693년 울릉도에서 <strong>안용복</strong>을 비롯한 조선인들과 만나게 되었습니다.
+        </li>
+        <li>양가는 일본 정부(에도 막부)에 조선인들의 울릉도 도해(渡海)를 금지해달라고 청원하였고, 막부가쓰시마번(對馬藩)에 조선 정부와의 교섭을 지시함에 따라 양국간 교섭이 개시되는데, 이를 ‘울릉도쟁계’라 합니다.</li>
+        <li>에도 막부는 1695년 12월 25일 돗토리번에 대한 조회를 통해 “울릉도(죽도)와 독도(송도) 모두 돗토리번에 속하지 않는다”는 사실을 확인한 후(<strong>「돗토리번 답변서」</strong>), 1696년 1월 28일 일본인들의 울릉도 방면 도해를 금지하도록 지시하였습니다.
+        </li>
+        <li>이로써 한&#183;일 양국간 분쟁은 마무리되었고, 울릉도쟁계 과정에서울릉도와 독도가 우리나라 영토임이 확인되었습니다.</li>
+      </ul>
+    </div>
+
+    <div id="footer">밑에 영역</div>
+  </div>
+
+</body>
+</html>

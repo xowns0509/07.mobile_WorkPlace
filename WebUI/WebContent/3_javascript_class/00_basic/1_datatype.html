@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript">
+	// 1. 자바스크립트는 데이터타입에 관대
+	var byensu = 10000;
+
+	//화면에 출력하는 건 document.writeln("내용");
+	document.writeln("byensu에 10000을 넣었다. 변수의 값은?: " + byensu + "<br/>");
+
+	byensu = "문자열대입";
+	document.writeln("byensu에 '문자열대입'을 넣었다. 변수의 값?: " + byensu + "<br/>");
+	document.writeln("byensu의 자료형은 무엇?: " + typeof (byensu) + "<br/>");
+	/* byensu에 저장되었던 값은 10000으로, 숫자였지만
+	이후 byensu = "문자열대입"으로 문자열형태의 데이터를 넣었고
+	아무 오류 없이 그대로 출력함.
+	전혀다른 형태의 데이터를 넣어도 알아서 데이터 타입을 변경해주기 때문에
+	그대로 갖다 써도 문제가 안 되.
+	
+	결국 자료형 선언을 var로 통일하는 거 자체가
+	변수의 형태에 크게 신경쓰지 않는다는 걸 의미
+
+	또한 실제로 개행하는 것은 브라우저에서 이므로
+	<br> 태그를 써줘야 함. */
+
+	//2. 리터럴: 데이터의 값
+	var arr = [ '안녕', "hello", 'hi', '곤니찌와' ];
+	//위와 같이 쓰면 무조건 배열을 의미.
+	//자바스크립트는 쌍따와 홑따의 개념이 모호함.
+	document.writeln("변수의 값: " + arr[2] + "<br/>");
+
+	var arr = [ '안녕', [ "hello", 'hi' ], '곤니찌와' ];
+	document.writeln("변수의 값: " + arr[1][1] + "<br/>");//hi출력
+	//자바스크립트는 프로그래밍 언어이므로 0부터 시작.
+
+	//뒤에 있는 놈을 확인하며 자동으로 지가 어떤 데이터타입인지 잡음.
+	var arr2 = []; // [] 이건 배열, {} 이건 객체
+	var obj = {
+		x : 1,
+		y : 2,
+		x : 3
+	};// x, y는 객체의 변수이며 그 안에 3, 2가 저장된다고 생각하면 됨.
+
+	document.writeln("x는? " + obj.x + "<br/>");
+	document.writeln("(객체를 변수처럼 볼려면 홑따로 묶어야 한다.)y는? " + obj['y'] + "<br/>");
+	//고로 오른쪽은 실행 불가 document.writeln("x는? " + obj.[y] + "<br/>");
+
+	//3. undefined
+	document.writeln("오브젝트에 x, y, z만 있는데 a를 불러보면? " + obj.a + "<br/>");
+	//a는 없으므로 undefiend출력. 요런걸 언디파인드라고 함.
+
+	var un;
+	document.writeln("변수 un도 선언만 했지 값을 지정안했다. un은? " + un + "<br/>");
+	//undefined
+
+	//일부러 오타내서 크롬에서 잡아내기 
+	ddocument.writeln("변수 un도 선언만 했지 값을 지정안했다. un은? " + un + "<br/>");
+</script>
+</head>
+<body>
+
+</body>
+</html>

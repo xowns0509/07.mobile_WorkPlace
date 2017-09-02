@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>jQuery Mobile</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+
+<link rel="shortcut icon" href="../image/icon.png">
+<link rel="apple-touch-icon" href="../image/icon.png">
+
+<link href="../jQueryLib_ex/jquery.mobile-1.3.2.min.css" rel="stylesheet" type="text/css" />
+<script src="../jQueryLib_ex/jquery-1.11.0.min.js"></script>
+<script src="../jQueryLib_ex/jquery.mobile-1.3.2.min.js"></script>
+
+<!-- 1.4.2 버전에서는 안되네  -->
+
+<style>
+.nav-glyphish-example .ui-btn .ui-btn-inner {
+	padding-top: 40px;
+}
+
+.nav-glyphish-example .ui-btn .ui-icon {
+	width: 30px;
+	height: 30px;
+	margin-left: -15px;
+	box-shadow: none;
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
+	-webkit-border-radius: 0;
+	border-radius: 0;
+}
+
+#chat .ui-icon {
+	background: url(../image/glyphish-icons/09-chat2.png) 50% 50% no-repeat;
+	background-size: 24px 22px;
+}
+
+#email .ui-icon {
+	background: url(../image/glyphish-icons/18-envelope.png) 50% 50%
+		no-repeat;
+	background-size: 24px 16px;
+}
+
+#login .ui-icon {
+	background: url(../image/glyphish-icons/30-key.png) 50% 50% no-repeat;
+	background-size: 12px 26px;
+}
+
+#beer .ui-icon {
+	background: url(../image/glyphish-icons/88-beermug.png) 50% 50%
+		no-repeat;
+	background-size: 22px 27px;
+}
+
+#coffee .ui-icon {
+	background: url(../image/glyphish-icons/100-coffee.png) 50% 50%
+		no-repeat;
+	background-size: 20px 24px;
+}
+
+#skull .ui-icon {
+	background: url(../image/glyphish-icons/21-skull.png) 50% 50% no-repeat;
+	background-size: 22px 24px;
+}
+</style>
+</head>
+
+<body>
+	<div id=musiclist data-role="page">
+		<div data-role="header">
+			<h1>musiclist</h1>
+		</div>
+
+		<div data-role="content">
+			<ul data-role='listview' data-inset="true" data-filter="true">
+				<li data-role="list-divider">네 음악 시작</li>
+				<li><a href="#music1" data-icon='power' data-transition="flow"><img src="../image/album-ws.jpg" />첫 번째 music</a></li>
+				<li><a href="#music2" data-icon='power' data-transition="flow"><img src="../image/album-k.jpg" />두 번째 music</a></li>
+				<li><a href="#music3" data-icon='power' data-transition="flow"><img src="../image/album-mg.jpg" />세 번째 music</a></li>
+				<li><a href="#music4" data-icon='power' data-transition="flow"><img src="../image/album-ok.jpg" />네 번째 music</a></li>
+				<li data-role="list-divider">네 음악 끝</li>
+			</ul>
+			<br />
+			<a href="01_dial.html" data-rel="dialog">다이얼로그</a>
+			<br />
+		</div>
+
+		<div data-role="footer" data-position="fixed">
+			<div data-role="navbar" class="nav-glyphish-example">
+				<ul>
+					<li><a href="#" id="chat" data-icon="custom">Chat</a></li>
+					<li><a href="#" id="email" data-icon="custom">Email</a></li>
+					<li><a href="#" id="skull" data-icon="custom">Danger</a></li>
+					<li><a href="#" id="beer" data-icon="custom">Beer</a></li>
+					<li><a href="#" id="coffee" data-icon="custom">Coffee</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div id=music1 data-role="page">
+		<div data-role="header">
+			<h1>music1</h1>
+			<a href="#" data-role='button' data-rel='back'>이전</a>
+		</div>
+
+		<div data-role="content">
+			<input type="text" value="music1제목" />
+			<br />
+			<img src="" alt="music1의 정보" />
+			<br />
+			<button onclick="playAudio()">재생</button>
+			<button onclick="pauseAudio()">일시정지</button>
+			<hr />
+			<audio src="../media/15 As If.mp3" controls> HTML5 Audio를 지원하지 않는 브라우저입니다
+			</audio>
+		</div>
+
+		<div data-role="footer" data-position="fixed">
+			<div data-role="navbar" class="nav-glyphish-example">
+				<ul>
+					<li><a href="#" id="chat" data-icon="custom">Chat</a></li>
+					<li><a href="#" id="email" data-icon="custom">Email</a></li>
+					<li><a href="#" id="skull" data-icon="custom">Danger</a></li>
+					<li><a href="#" id="beer" data-icon="custom">Beer</a></li>
+					<li><a href="#" id="coffee" data-icon="custom">Coffee</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div id=music2 data-role="page">
+		<div data-role="header">
+			<h1>music2</h1>
+			<a href="#" data-role='button' data-rel='back'>이전</a>
+		</div>
+
+		<div data-role="content">
+			<input type="text" value="music2제목" />
+			<br />
+			<img src="" alt="music1의 정보" />
+			<br />
+			<button onclick="playAudio()">재생</button>
+			<button onclick="pauseAudio()">일시정지</button>
+			<hr />
+			<audio src="../media/15 As If.mp3" controls> HTML5 Audio를 지원하지 않는 브라우저입니다
+			</audio>
+			<br />
+		</div>
+
+		<div data-role="footer" data-position="fixed">
+			<div data-role="navbar" class="nav-glyphish-example">
+				<ul>
+					<li><a href="#" id="chat" data-icon="custom">Chat</a></li>
+					<li><a href="#" id="email" data-icon="custom">Email</a></li>
+					<li><a href="#" id="skull" data-icon="custom">Danger</a></li>
+					<li><a href="#" id="beer" data-icon="custom">Beer</a></li>
+					<li><a href="#" id="coffee" data-icon="custom">Coffee</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div id=music3 data-role="page">
+		<div data-role="header">
+			<h1>music3</h1>
+			<a href="#" data-role='button' data-rel='back'>이전</a>
+		</div>
+
+		<div data-role="content">
+			<input type="text" value="music3제목" />
+			<br />
+			<img src="" alt="music1의 정보" />
+			<br />
+			<button onclick="playAudio()">재생</button>
+			<button onclick="pauseAudio()">일시정지</button>
+			<hr />
+			<audio src="../media/15 As If.mp3" controls> HTML5 Audio를 지원하지 않는 브라우저입니다
+			</audio>
+		</div>
+
+		<div data-role="footer" data-position="fixed">
+			<div data-role="navbar" class="nav-glyphish-example">
+				<ul>
+					<li><a href="#" id="chat" data-icon="custom">Chat</a></li>
+					<li><a href="#" id="email" data-icon="custom">Email</a></li>
+					<li><a href="#" id="skull" data-icon="custom">Danger</a></li>
+					<li><a href="#" id="beer" data-icon="custom">Beer</a></li>
+					<li><a href="#" id="coffee" data-icon="custom">Coffee</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div id=music4 data-role="page">
+		<div data-role="header">
+			<h1>music4</h1>
+			<a href="#" data-role='button' data-rel='back'>이전</a>
+		</div>
+
+		<div data-role="content">
+			<input type="text" value="music4제목" />
+			<br />
+			<img src="" alt="앨범아트" />
+			<br />
+			<button onclick="playAudio()">재생</button>
+			<button onclick="pauseAudio()">일시정지</button>
+			<hr />
+			<audio src="../media/15 As If.mp3" controls> HTML5 Audio를 지원하지 않는 브라우저입니다
+			</audio>
+		</div>
+
+		<div data-role="footer" data-position="fixed">
+			<div data-role="navbar" class="nav-glyphish-example">
+				<ul>
+					<li><a href="#" id="chat" data-icon="custom">Chat</a></li>
+					<li><a href="#" id="email" data-icon="custom">Email</a></li>
+					<li><a href="#" id="skull" data-icon="custom">Danger</a></li>
+					<li><a href="#" id="beer" data-icon="custom">Beer</a></li>
+					<li><a href="#" id="coffee" data-icon="custom">Coffee</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>
+

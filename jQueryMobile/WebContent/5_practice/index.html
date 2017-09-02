@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>jQuery Mobile</title>
+<meta charset="euc-kr" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+
+<link rel="shortcut icon" href="../image/icon.png">
+<link rel="apple-touch-icon" href="../image/icon.png">
+
+<link rel="stylesheet" href="../jQueryLibs/jquery.mobile-1.4.5.css" />
+<script src="../jQueryLibs/jquery-1.11.1.js"></script>
+<script src="../jQueryLibs/jquery.mobile-1.4.5.min.js"></script>
+
+<script type="text/javascript">
+	$(document).bind("pagebeforeshow", function() {
+		btnShowAndHide();
+	});
+
+	function btnShowAndHide() {
+		// 조건처리. 로그인 되어있으면 로그아웃버튼이 나와야 하고 그렇지 않으면 로그인 버튼이 나와야 하고.
+		if ($('#home').attr('data-login') == 'ok') {
+			$('#btnLogin').hide();
+			$('#btnLogout').show();
+			
+			//상품 목록 보기. 로그인 했을 경우에만
+			$('#btnPhoneList').attr('href', 'phonelist.jsp?currentPage=1');
+
+		} else {
+			$('#btnLogin').show();
+			$('#btnLogout').hide();
+			
+			//상품 목록 안 보기. 로그인 안 했을 경우.
+			$('#btnPhoneList').attr('href', '#');
+
+		}
+	}
+
+	function logout() {
+		$('#home').attr('data-login', '');
+		btnShowAndHide();
+	}
+</script>
+</head>
+
+<body>
+	<div id="home" data-role="page" data-theme="a">
+		<div data-role="header" data-theme="a">
+			<h1>jQuery Mobile Demo</h1>
+		</div>
+
+		<div data-role="content">
+			<div class="ui-grid-a">
+				<div class="ui-block-a">
+					<a id="btnLogin" href="loginform.html" data-role="button" data-icon="gear">로그인</a> <a id="btnLogout" href="javascript:logout();" data-role="button" data-icon="gear">로그아웃</a>
+				</div>
+				<div class="ui-block-b">
+					<a id="btnPhoneList" href="#" data-icon="grid" data-role="button">상품목록</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

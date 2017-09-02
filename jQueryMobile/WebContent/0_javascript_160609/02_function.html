@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>추가적 자바스크립트</title>
+<script type="text/javascript">
+	//0. 자바스트립트는 재귀호출 가능: factorial ex) 5! = 1*2*3*4*5
+	function factorial(n) {
+		if (n <= 1)
+			return n;
+		else
+			return n * factorial(n - 1);//자기가 자기를 불렀어. .
+
+	}
+	console.log('팩토리얼, factorial(5)출력: ' + factorial(5));// 120이 나오겠지.
+
+	// 1. 자바스트립트는 함수에 동적으로 추가 가능.
+	function add(x, y) {
+
+		// 1-2. 따라서 desc를 바깥에서 추가해두고 여기서 출력하려하면 에러남.
+		// console.log(desc); 고로 정상적인 진행을 위해 주석처리
+
+		// 1-3. 이렇게는 출력이 가능해
+		console.log("add.desc출력:" + add.desc);
+		// 다만 add()가 처음 불렸을 때는 add.desc = '내가 만든 함수'; 이전 이므로 undefined 뜰 것임.
+		// 선언 자체는 바깥에서 되어는 있으므로, 순서만 틀려서 그럼.
+
+		return x + y;
+	}
+	add(1, 2);// 1-1. add 함수 실행.
+	// 하지만 desc에 관해선 아직 어떠한 정의도 내려지지 않았으므로 에러가 발생.
+
+	add.desc = '내가 만든 함수';
+	// 1-4. 이렇게 동적으로도 추가 가능. 어떻게 이런 것이 가능하냐고? 함수를 객체로 취급하기에.
+
+	// 1-5. 이제 add.desc = '내가 만든 함수'; 이후에 콘솔로 찍어보면 정상 출력됨. 
+	console.log("add()밖에서, add.desc = '내가 만든 함수'; 이후 add.desc출력:" + add.desc);
+
+	// 2. 익명함수: unnamed funciton : 함수를 정의하고 바로 호출
+	var func = function(x, y) {
+		return x + y;
+	}(1, 3);
+	// 선언 [function(x, y){....}]과
+	// 실행 [var func = function(1, 3)]을 동시에 했어.
+	// 따라서 아래 func 넣으면 값 출력
+	console.log(func);
+</script>
+</head>
+<body>
+
+</body>
+</html>

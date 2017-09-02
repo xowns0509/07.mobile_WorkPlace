@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Audio</title>
+<style type="text/css">
+input {
+	width: 100px;
+}
+</style>
+<script type="text/javascript">
+
+var sw = 0;
+var audio = new Audio('../media/15 As If.mp3');	
+
+function togglePlay(){
+	var control = document.getElementById("control");
+	
+	if(sw == 0){
+		//audio.paused || audio.ended >> 조건을 이렇게 줄 수도 있음.
+		audio.play();
+		//control.setAttribute("value", "일시정지");
+		control.innerHTML = '일시정지';
+		sw = 1;
+
+	}else if(sw == 1){
+		//audio.pause()  >> 조건을 이렇게 줄 수도 있음.
+		audio.pause();
+		//control.setAttribute("value", "재생");
+		control.innerHTML = '재생';
+		sw = 0;
+	
+	}
+}
+
+function toggleMute(){
+	audio.muted = !audio.muted;
+}
+
+</script>
+
+</head>
+<body>
+  <div id="player">
+  
+    <img src="../images/sample/sensitive.jpg" id="img" /><br />
+    <button id="control" onclick="togglePlay()">재생</button>
+    <button id="mute" onclick="toggleMute()">mute</button>
+    
+  </div>
+</body>
+</html>

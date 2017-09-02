@@ -1,0 +1,122 @@
+<!--
+ 1. 문서를 출력 
+ 
+	document.open()	: 문서의 출력을 시작
+	docuemnt.close(): 문서의 출력을 종료 
+					 (* open()으로 출력을 시작한 문서는 반드시 close()로 작업을 종료해야 함 )
+	document.clear(): 문서를 삭제 
+					 ( 다른 프레임이나 윈도우의 내용을 삭제하고 싶을 경우만 사용 )
+					 
+ 2. 문자열을 출력
+ 	document.write() : 문자열을 출력
+ 					 ( 문자열을 연결할 땐 + 나 ,(콤마)로 연결 )
+ -->
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Document 예제</title>
+<meta charset="UTF-8">
+<style type="text/css">
+body {
+	background-color: Yellow;
+	color: RED;
+}
+/* 그러나 여기다 만든 css의 배경색이나 색상 등은 문서를 새롭게 만들경우
+(show_document()로 행하여 만들어진 새로운 페이지)엔 영향을 미치지 못 한다.
+그래서 새로운 페이지가 나올 때는 색상을 다시 지정해주어야 함.
+show_document()에서 새로운 페이지(문서. document)를 만드므로
+그 함수 안에 document.bgColor, document.fgColor를 기술해야 함.
+
+이게 없으면 show_document()의 open()로 인해 새롭게 만들어진 페이지엔
+배경이 하얀색이 나옴. (스타일 적용 안 됨)*/
+</style>
+
+<!--  스타일부터 기술하고 그 다음 스크립트를 기술하자.
+규칙은 아닌데 그렇게 안하면 안 되는 경우가 발생 -->
+<script type="text/Javascript">
+	function show_document() {
+		/*
+			1. 사용자이름 텍스트필드의 입력값을 변수로 지정
+			2. 문서를 연다
+			3. 문서에 쓴다 ( 예 : 환영합니다. 누구누구 님 )
+			4. 문서를 닫는다
+		 */
+
+		// 요소를 찾기 위한 방식 3가지.
+		// 방식1.
+		// 바디의 frm안의 userName안의 값(value)
+		var name = document.frm.userName.value;
+
+		// 폼에다 이름을 부여하고 그 폼안에 있는 요소를 참조형 방식으로 찾아내는 것
+		// 그러나 폼 자체가 동적일 때도 있을 수 있음. 그럼 이름을 부여할 수가 없는 데,
+		// 그때는 방식2 를 사용.
+
+		// 방식2.
+		var name2 = document.forms[0].userName.value;
+		// forms[0]. form 이라는 놈 들 중에서 0번째. 지금은 form이 하나 밖에 없어 0번째.
+		// 그리고 그 form 안에 들어있는 요소중 이름이 userName인 놈을 찾는 거지.
+		// form이라는 놈이 여러 개 있으면 첫 번째, 두 번째, 세 번째를
+		// forms[0], forms[1], forms[2]로 찾는 거.
+
+		// form이 여러 개라고?
+		// 한 꺼번에 입력 할 수 없고 위에 입력 다 한 후 그 다음에 중간에 있는 거 입력 다하고
+		// 마지막에 맨 아래에 있는 거 입력할 때.
+		// 주소만 따로 '변경하시겠습니까' or 물건 수량 조절 등등.
+
+		// 방식3. id부여. 일반적으로 id는 name과 동등한 값으로 부여.
+		// id를 찾으려면 getElementById()사용.
+		var name3 = document.getElementById("userName").value;
+
+		document.open();
+		// 화면을 통으로 바꾸려면 open(). 새로 페이지를 여는 거.
+		// (= 화면을 새로 만듦 = 새로운 문서).
+		// 이렇게 열었으면 반드시 닫아야 함. 맨 아래에 . document.close();
+		// 이제 이렇게 열은 document에 뭔가를 쓰려면 write()를 이용하여 기술.
+
+		// open()은 새로운 문서를 만들었다는 거임. 따라서
+		// 새로운 화면의 배경도 밑에 새로 bgcolor등으로 기술해줘야 해(필요하다면) 	.
+		// 위의 스타일시트의 body태그에 주었던 background-color: Yellow, color: RED는
+		// 새로운 창에선 적용되지 않는다. 새로운 창에다 스타일을 부여하기 위해 아래와 같이 기술.
+		document.bgColor = '#666699';//크롬에서는 백그라운드 색이 적용 안... 됬었지만 현재 되는 듯?.
+		document.fgColor = '#ff22ff';
+
+		// 오늘 날짜 출력. date사용.
+		var today = new Date();
+		document.write("오늘은 " + today.toLocaleString() + "입니다 <br/>");
+		document.write("1번 방식." + "<br/>");
+		document.write("document.getElementById('userName').value " + name3
+				+ "<br/>" + "<br/>");
+
+		document.write("2번 방식." + "<br/>");
+		document.write("document.form[0].userName.value " + name2 + "<br/>"
+				+ "<br/>");//2번방식 적용
+
+		document.write("3번 방식." + "<br/>");
+		document.write("document.frm.userName.value " + name + "<br/>"
+				+ "<br/>");//3번방식(Id로 찾기)
+
+		// 이미지태그를 document.write()로 출력. 태그요소가 통째로 들어감.
+		document.write("<img src = '../images/1.jpg' title = '두둠칫' />");
+
+		document.close();
+
+	}
+</script>
+</head>
+
+<body>
+  <form name="frm">
+    당신의 이름은? <input type="text" name="userName" id="userName" size="20">
+    <br />
+    <!-- 3번 방식을 위해 id삽입 -->
+    <input type="button" value="눌려봐" onclick="JavaScript:show_document()">
+    <!-- JavaScript:show_document()의 JavaScript:는 생략이 가능하다.
+    나중에 다른 함수랑 겹칠까봐 기재하기도 함.-->
+    <!-- 여기까지 onclick="JavaScript:show_document()"로 이벤트 한거고
+    밑에부터 onclick="JavaScript:show_document()"없이 -->
+
+  </form>
+</body>
+</html>
+

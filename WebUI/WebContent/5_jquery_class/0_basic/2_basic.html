@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>연습</title>
+
+<style type="text/css">
+.active {
+	border: 3px dotted red;
+}
+</style>
+<script type="text/javascript" src="../lib/jquery-2.0.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+
+		//1. 여성만 골라서 분홍색 칠하기
+		$('.woman').css('background', 'pink');
+		//클래스를 골라야 하니까 '.woman' 으로
+
+		var inputText = $('.inputText');
+		//2. 아래 텍스트 필드에서 마우스로 선택된(focus) 놈 색깔 넣기(focus이벤트).		
+		inputText.focus(function() {
+			//inputText.addClass('active'); 전부 다... 이므로
+			$(this).addClass('active');
+			// 스타일영역에 색상속성이 기술된 클래스를 addClass()로 추가.
+
+			// 클릭한 그것만. this로 지정.
+			// 아래 텍필드 전체를 .inputText란 클래스로서 묶어도
+			// 선택되는 요소하나만 적용시키기 위해 this를 사용하여
+			// 개별적인 속성부여가 가능.
+
+		});
+
+		//아래 텍스트 필드에서 마우스로 선택 잃은 놈(blur) 원래대로 돌리기(blur이벤트)
+		inputText.blur(function() {
+			$(this).removeClass('active');
+			//위에서 추가되었던 클래스를 removeClass()로 지워 색상속성을 날린다.
+		});
+		
+		//함수의 실행 전을 구분하기 위해 일부러 이벤트 발생시 함수 실행하게 함.
+		$('#btn').click(function(){
+			
+			//3. text함수와 html함수, empty함수, attr함수적용.	
+			$('#divText').text('<img src = "images/puppy.jpg"/>');
+			$('#divHtml').html('<img src = "images/puppy.jpg"/>');
+			$('#divEmpty').empty();
+			//text()는 글자 그대로 들어감.
+			//html()는 안의 문자열이 html코드로서 들어감. 그래서 기술된 기능을 수행.
+			//empty()는 내용을 비움. 그러나 요소 자체가 사라지는건 아니라서 아마 공백으로 뜰 거임.
+			
+			$('#changeGrim').attr('src', 'images/cat.jpg').click(function() {
+				alert('그림을 선택');
+			}).css('border', '3px solid red');
+			//펑션체인이 연속으로 들어감. #changeGrim을 찾아서
+			//attr로 속성설정 >> click이벤트 등록 >> alert경고창 >> css로 경계선 색상 설정
+			
+		});
+		
+		// each함수로 복수 개를 적용하려면
+		$('.data').each(function() {
+			$(this).click(function() {
+				alert($(this).text());
+			});
+		});
+		
+
+		// 		$('.data').click(function() {
+		// 			alert($(this).text());
+		// 		});
+
+
+	});
+</script>
+</head>
+<body>
+
+  <!-- 1-->
+  <ul>
+    <!--  남자, 여자를 구분하기 위해 클래스 부여. id는 다수에게 부여할 수가 없잖아. -->
+    <li class='man'>A</li>
+    <li class='man'>B</li>
+    <li class='woman'>C</li>
+    <li class='man'>D</li>
+    <li class='woman'>E</li>
+  </ul>
+
+  <!-- 2-->
+  <hr>
+  <!-- 수평선 하나 긋는 거 hr -->
+  <input type='text' class='inputText' />
+  <input type='text' class='inputText' />
+  <input type='text' class='inputText' />
+  <br />
+  <br />
+  
+  <!-- 3 -->
+  <input type="button" id=btn value="눌눌">눌러보지 않겠는가.
+  <div id='divText'>여기에 글씨를 쓸꺼야. text()함수의 사용을 지켜봐.</div>
+  <div id='divHtml'>여기에 그림을 넣을 꺼야. html()함수의 사용을 지켜봐.</div>
+  <div id='divEmpty'>이 글씨를 비울 거야. empty()함수의 사용을 지켜봐.</div>
+  
+  <p><!-- p태그는 단락구분을 위하여 -->
+    <img src='images/puppy.jpg' id='changeGrim' />
+  </p>
+
+  <!-- 4 -->
+  <div class='data'>이름</div>
+  <div class='data'>나이</div>
+  <div class='data'>직업</div>
+  
+</body>
+</html>

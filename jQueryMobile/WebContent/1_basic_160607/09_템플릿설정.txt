@@ -1,0 +1,9 @@
+# Template 설정
+
+01_index.html처럼 기본적인 내용을 복사
+이클립스 > 메뉴 > Window > Preferences
+Web > HTML Files > Editor > Templates
+new > 	pattern : 복사한 기본 내용 붙이고
+     	name : 이름부여 ex) JQueryMobile 기본
+	context : New HTML
+새 html 파일 만들때마다 선택하면 됨

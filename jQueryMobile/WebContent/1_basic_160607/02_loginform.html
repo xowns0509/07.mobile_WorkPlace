@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>jQuery Mobile</title>
+<meta charset="UTF-8">
+
+<!-- 어짜피 실행하지 않아. 필요 없음. -->
+<!-- 그런데도 
+첫 번째 페이지에 위의 라이브러리들만 기술 되어있으면 그 이후의 페이지도 모두 적용되는거임
+따로 매 페이지마다 기술 안해도. -->
+<!-- 문제는 여기다 써도 실행을 안해. 이 페이지에서만 작동시키고 싶은 자바스크립트를 넣고 싶은데 그걸 실행안한다고.
+ 그래서 여기다 자바스크립트 써도 실행을 안함. 그래서 굳이 하려면 인덱스 페이지에 기술해야 해. -->
+
+</head>
+<body>
+	<!-- HTML5의 사용자 정의 속성은 'data-'로 시작하고 그 뒤에는 키값으로 지정
+			ex) data-role="page"   role:key, page:value
+	 -->
+	<div data-role='page'>
+
+		<div data-role="header">
+			<h2>로그인</h2>
+			<a href="#" data-role='button' data-rel='back'>이전</a>
+			<!-- 이전버튼. -->
+		</div>
+
+		<div data-role="content">
+
+			<p>여기는 로그인 페이지입니다.</p>
+			<form>
+				아이디: <input type="text" /><br /> 패스워드: <input type="password" /><br />
+				<a href="javascript:submitLogin()" data-role="button">로그인 확인</a>
+			</form>
+
+		</div>
+
+		<div data-role="footer" data-position="fixed">
+			<h2>꼬리말</h2>
+		</div>
+
+	</div>
+	<!-- 역할을 부여하고 이 전체를 한 번 더 div로 감싸. -->
+
+</body>
+</html>

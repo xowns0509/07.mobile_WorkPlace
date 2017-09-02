@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<style type="text/css">
+table {
+ 	float: left;
+	margin-right: 30px;
+	margin-bottom: 30px;
+	table-align: center;
+	-webkit-transition-duration: 0.1s;
+}
+
+table:hover {
+	height: 50%;
+	width: 50%
+}
+
+th, td {
+	padding: 15px;
+}
+</style>
+
+</head>
+<body>
+
+  <table border='2'>
+    <!-- 콜스팬(colspan): 컬럼 합치기. colspan = '2'  -->
+    <!-- 로우스팬(rowspan): 행 합치기. rowspan = '8' -->
+
+    <!--  7행 4열 -->
+    <tr>
+      <!-- 1행 -->
+      <th colspan='2'>부서명</th>
+      <!-- 1.1열 스팬-->
+      <th>전화번호</th>
+      <th>팩스번호</th>
+    </tr>
+
+    <tr>
+      <!-- 2행 -->
+      <td colspan='2'>종합상황실</td>
+      <!-- 1.2열스팬-->
+      <td>종합상황실 전번</td>
+      <td>종합상황실 팩번</td>
+    </tr>
+
+    <tr>
+      <!-- 3행스팬 -->
+      <td rowspan='2'>3행1열자리</td>
+      <td>비서실장</td>
+      <td>비서실장 전번</td>
+      <td rowspan='2'>비서실장 팩번</td>
+    </tr>
+
+    <tr>
+      <!-- 4행스팬 -->
+      <td>비서실</td>
+      <td>비서실 전번</td>
+    </tr>
+
+    <tr>
+      <!-- 5행 -->
+      <td rowspan='3'>홍보실</td>
+      <td>홍보실장</td>
+      <td>홍보실장 전번</td>
+      <td rowspan='3'>홍보실장 팩번</td>
+    </tr>
+
+    <tr>
+      <!-- 6행 -->
+      <td>홍보부</td>
+      <td>홍보부 전번</td>
+    </tr>
+
+    <tr>
+      <!-- 7행 -->
+      <td>국제협력부</td>
+      <td>국제협력부 전번</td>
+    </tr>
+  </table>
+
+
+</body>
+</html>

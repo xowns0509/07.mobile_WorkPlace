@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>이벤트 핸들러 연결</title>
+<script type="text/javascript">
+	window.onload = init;
+	// window.onload = init; 윈도우가 다 뜬 다음에 실행하겠다. 무엇을? init 함수를.
+	// 함수를 연결할 때는 괄호 안쓰는 거임. init(); 이 아니라 init;. 단순히 연결만 하는 거.
+
+	function init() {
+		/* 위에서 window.onload로 이 함수를 등록했다.
+		 왜 굳이 화면 출력이 모두 되고나서야 init이 실행되어야 하는가?
+		 id라는 건 곧 요소에 부여되는 일종의 속성인데
+		 화면이 뜨기 전엔 그 요소가 로딩조차 안 되어있다.
+		 따라서 body부분이 모두 화면에 뜨고나서야 비로소
+		 getElementById()가 유효한 셈.
+		 화면이 안 떴는데(요소가 로딩이 안 됬는데)
+		 요소를 어떻게 불러와. id 역시 무용지물*/
+
+		document.getElementById("btn").onclick = btn_click;
+		//getElementById()의 괄호 안에는 이벤트를 등록할 요소의 id가 온다.
+		//btn에 걸리는 이벤트 시 실행될 함수는 btn_click;임, btn_click(); 아님.
+
+		function btn_click() {
+			//사실 버튼이 클릭시 실행될 btn_click은 init()함수 바깥에 기술되어있어도 됨.
+			//등록만 init(); 안에 있어야 하고.
+			alert('이벤트 발생');
+		}
+	}
+
+	//간략화 진행1.
+	window.onload = init2;
+
+	//위에서는 등록함수 따로, 실행함수 따로 이렇게 줬지만
+	//아래와 같이 등록함수에 실행함수를 곧바로 엮을 수 있다. 이름도 안주면서.
+	function init2() {
+		document.getElementById("btn2").onclick = function() {
+			alert('btn2 이벤트 발생');
+		}
+	}
+
+	//간략화 진행2.
+	window.onload = function init3() {
+
+		// 위에서는 등록함수 따로, 실행함수 따로 이렇게 줬지만
+		// window.onload 자체에 초기화 함수를 아예 엮어버렸다.
+		document.getElementById("btn3").onclick = function() {
+			alert('btn3 이벤트 발생');
+		}
+	}
+
+	// 이벤트 발생시 이벤트에 대한 정보가 인자로 넘어옴.(여기선 evt)
+	// evt를 기술해도 되고 기술 안해도 됨. 그러나.
+	// 이벤트에 대한 정보를 받아 무언가 해야 할 상황이라면
+	// evt던 무엇이던 인자를 넣어 이벤트에 대한 정보를 받아내야 함.
+
+	//또한 window.onload에 할당되는 함수는 단 1개 밖에 안 되는 듯.
+	//위의 주석들 죄다 풀고 계속 window.onload걸었더니 맨 마지막인 이놈만 실행됨.
+	window.onload = function init4() {
+		document.getElementById("btn4").onclick = function(evt) {
+			//evt란 이름은 아무거나 줘도 됨.
+			alert('btn4 이벤트 발생' + evt);
+		}
+	}
+</script>
+
+</head>
+<body onload="alert('무척이나 반갑습니다')" onunload="alert('가긴어딜가..가지맛!! 돌아와줘!')">
+
+  <!-- 1. 페이지 이벤트
+    onload    : 페이지를 불러오기 할 때
+    onunload  : 다른 페이지로 이동할 때 ( 브라우저를 끝때가 아님 )
+    
+  2. 마우스 이벤트
+    onmouseover : 마우스 커서를 대면
+    onmouseout  : 마우스 커서가 떠나면
+    onclick   : 마우스 클릭시
+    onmousedown : 마우스 버튼을 눌였을 때
+    onmouseup : 마우스 버튼을 떼었을 때 -->
+
+  <input type="button" value="눌려~~~~" onclick="alert('누르라고 누르긴')">
+  <br>
+  <br>
+  <br>
+  <b onmouseover="alert('마우스 치워랏')">이 글씨에 마우스를 대면.....</b>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <b onmouseover="this.style.background='red'" onmouseout="this.style.background='white'"> 다시 한 번만 더 마우스를 대주세요 </b>
+  <br>
+
+  <input type='button' value='눌러' id='btn' />
+  <input type='button' value='인자를 넣은 버튼' id='btn6' />
+  <!-- id가 btn인 버튼이 2개 있다. 원래 id는 오직 단 하나의 요소에만 유효한 값으로 -->
+  <!-- 위와 같이 2개를 줬을 경우 위의 버튼만이 이벤트가 등록된다. -->
+  <!-- 화면출력도 정상적으로 되고 developer에서도 오류는 안 뜨는 건 참고. -->
+
+  <input type='button' value='btn2 눌러' id='btn2' />
+  <input type='button' value='btn3 눌러' id='btn3' />
+  <input type='button' value='btn4 눌러' id='btn4' />
+
+
+
+</body>
+</html>

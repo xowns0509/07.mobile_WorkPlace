@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>9_test.html</title>
+
+<script type="text/javascript">
+	//자바스크립트의 이미지 띄우기.
+	document.write("<img src = '../images/1.jpg' width='' height = ''/>");
+
+	//바깥에 쌍따를 써줬으니 겹치지 않게 안의 값은 홑따로 줌.
+	document.write("<table border='2'>");
+
+	/*화면에 5행 5열의 테이블을 만들고 1부터 ~ 25까지의 숫자를 출력*/
+	var k = 1;
+
+	for (var i = 0; i < 5; i++) {
+		document.write("<tr>");
+
+		for (var j = 0; j < 5; j++) {
+			document.write("<td>" + k++ + "</td>");
+		}
+		document.write("</tr>");
+
+	}
+	document.write("</table>");
+	
+</script>
+
+</head>
+<body>
+
+</body>
+</html>

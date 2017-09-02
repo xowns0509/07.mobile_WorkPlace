@@ -1,0 +1,49 @@
+<!-- 3_2_window_opened.html은
+3_1_window_opener.html로 부터 불려진 창임.-->
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>새로 열려진 창</title>
+<script type="text/javascript">
+	function changeSite(idx) {
+		
+
+		switch (idx) {
+		case 0:
+			alert('window.location.href이므로 이 창(팝업창)에서 실행');
+			window.location.href = 'http://www.daum.net';
+			break;
+
+		case 1:
+			alert('opener.location.href');
+			opener.location.href = 'http://www.nate.com';
+			break;
+
+		case 2:
+			alert('window.opener.location이므로 원본창에서 실행');
+			window.opener.location = 'http://www.naver.net';
+
+			// 오프너의 location 설정. 오프너란 이 3_2_window_opened.html을
+			// 열어 준 놈(html 파일).
+			break;
+		//window 생략 가능
+
+		}
+	}
+	// 인자를 받아 낼 함수 안의 파라메터를 선언한다고
+	// changeSite(var sel) 이렇게 쓸 수 없다. var라고 쓸 필요가 없는 거.
+</script>
+</head>
+<body>
+  <form name="frm">
+    <input type="radio" name="site" onclick="JavaScript:changeSite(0)"> 다음 window.location.href
+    <br>
+    <input type="radio" name="site" onclick="JavaScript:changeSite(1)"> 네이버 opener.location.href
+    <br>
+    <input type="radio" name="site" onclick="JavaScript:changeSite(2)"> 네이트 window.opener.location
+    <br>
+  </form>
+</body>
+</html>

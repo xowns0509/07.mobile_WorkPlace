@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>2_operation.html</title>
+
+<script type="text/javascript">
+	//1. ===와 !==의 차이.
+	var num = 10;
+	var str = '10';
+
+	document.write("(num==str) 같으면 true, 다르면 false. " + (num == str) + "<br/>");
+	document.write("(num===str) 같음 true, 다름 false. " + (num === str) + "<br/>");
+	//위에건 값만 비교, 밑에 건 값하고 자료형을 같이 비교한다.
+	//따라서 밑에 건 자료형이 다르기 때문에 false.
+
+	//2. 실수형 계산시 오류.
+	document.write("0.2 * 3 은 얼마가 나올까?: " + (0.2 * 3) + "<br/>" + "<br/>");
+	// 자바스크립트에서는 실수형 계산시 오류가 있다. 결과가 0.6000000000000001
+	// 문제는 이 값을 받아 이것이 0.6임이 맞는 지를 비교할 떄가 있겠지. 그때 false가 나온다.
+	// 그래서 중간에 정수형 계산으로 바꿔줘야 해.	
+
+	//false
+	document.write("0.2 * 3 == 0.6?: " + (0.2 * 3 == 0.6) + "<br/>");
+	//true
+	document.write("0.2 * 10 * 3 == 0.6 * 10?: " + (0.2 * 10 * 3 == 0.6 * 10)
+			+ "<br/>");
+	//false
+	document.write("0.2 * 3 * 10 == 0.6 * 10?: " + (0.2 * 3 * 10 == 0.6 * 10)
+			+ "<br/>");
+</script>
+
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+
+<!-- JSON2라이브러리를 임포트 -->
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/json2/20110223/json2.js">
+	
+</script>
+
+<!-- jQuery라이브러리를 임포트 -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.0.js"></script>
+
+<!-- jstorage라이브러리를 임포트 -->
+<script type="text/javascript" src="js/jstorage.min.js"></script>
+
+<script type="text/javascript">
+	$(function() {
+		
+		// 저장된 값을 갖고 와서 화면에다 출력. get함수 사용.
+		$('#name').val($.jStorage.get('name'));
+		$('#memo').val($.jStorage.get('memo'));
+
+		// 등록 버튼 눌렸을 때
+		$('#set').click(function() {
+			$.jStorage.set('name', $('#name').val()); //저장하겠다는 게 set, 어떠한 이름을 부여한 게 name
+			$.jStorage.set('memo', $('#memo').val());
+		});
+		
+		// 삭제 버튼 눌렸을 때
+		$('#del').click(function() {
+			$.jStorage.deleteKey('name');
+			//$.jStorage.deleteKey('memo');
+			
+			//location.reload();//화면 갱신. 근데 안줘도 됨.
+			
+		});
+		
+		
+	});
+</script>
+</head>
+<body>
+  <form id="sample">
+    이름：<input id="name" /><br /> 비고：<input id="memo" /><br /> <br />
+    <button id="set">등록</button>
+    <button id="del">삭제</button>
+  </form>
+
+</body>
+</html>

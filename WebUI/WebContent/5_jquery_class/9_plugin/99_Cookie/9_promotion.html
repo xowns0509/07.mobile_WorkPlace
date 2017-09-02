@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>광고페이지</title>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.0.js"></script>
+<script type="text/javascript" src="js/jquery.cookie.js"></script>
+<!-- 쿠키플러그인 -->
+<script type="text/javascript">
+	$(function() {
+
+		$('input').click(function() {
+			$.cookie("check", $('input').prop('checked', true), {
+				expires : 3
+			});
+			window.close();
+			
+		});
+
+		//수진이꺼
+		//$(function(){
+		//	$('input:checkbox').click(function(){
+
+			// 				$.cookie("check",$('input:checkbox').prop('checked',true),{expires:3});
+		// 				window.close();
+		// 			});
+		// 		})
+	});
+</script>
+
+</head>
+<body>
+  <img alt="" src="./images/image.jpg">
+  <br /> 이 페이지를 3분간 열지 않겠습니다.
+  <input type="checkbox">
+</body>
+</html>

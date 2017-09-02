@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!-- 동영상 -->
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Video</title>
+<style type="text/css">
+canvas{
+		border: 1px solid #000;
+}
+</style>
+<script type="text/javascript">
+	window.onload = function(){
+		var video = document.getElementById('video');//객체 찾고
+		var canvas = document.getElementById('canvas');//객체 찾고
+		
+		canvas.addEventListener('click', function(){//canvas에 클릭 이벤트를 걸었음.
+			var ctx = canvas.getContext('2d');
+			ctx.drawImage(video, 0, 0, 320, 240);
+			// xy좌표 (0, 0)을 기준(왼쪽상단)으로 하여 x는 320, y는 240만큼 크기의 그림을 그림.
+			ctx.drawImage(video, 0, 0, 80, 80);
+			ctx.drawImage(video, 50, 80, 200, 100);
+			// x는 50, y는 80을 기준으로 하여 x= 200, y= 100만큼 크기의 그림을 그림.
+			// 앞의 xy좌표는 그림의 위치고 뒤의 xy좌표는 그림의 크기.
+			// 클릭 할 때 마다 그림이 canvas에 그림이 그려짐(스샷이 박힘).
+		});
+	}
+</script>
+</head>
+<body>
+<video width="320" height="240" controls="controls"  id="video">
+	<source src="../media/media.mp4" type="video/mp4"></source>
+<!-- 	<source src="../media/BigBuck.theora.ogv" type="video/ogg"></source> -->
+<!-- 	<source src="../media/BigBuck.webm" type="video/webm"></source> -->
+	Your browser does not support the video tag.
+</video>
+
+<canvas id="canvas" width="320" height="240"></canvas>
+</body>
+</html>

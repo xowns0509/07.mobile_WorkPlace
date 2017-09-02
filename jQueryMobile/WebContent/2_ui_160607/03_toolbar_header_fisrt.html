@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>jQuery Mobile</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+
+<link rel="shortcut icon" href="../image/icon.png">
+<link rel="apple-touch-icon" href="../image/icon.png">
+
+<link href="../jQueryLibs/jquery.mobile-1.4.5.min.css" rel="stylesheet" type="text/css" />
+<script src="../jQueryLibs/jquery-1.11.1.js"></script>
+<script src="../jQueryLibs/jquery.mobile-1.4.5.min.js"></script>
+</head>
+
+<body>
+	<div data-role="page">
+		<div data-role="header">
+			<h3>머리말</h3>
+			<!--  class="ui-btn-right" 이게 붙으면 왼쪽에 있던 다음버튼이 오른쪽으로 정렬됨. -->
+<a href="#" data-role='button' data-rel='back'>이전</a>
+<a href="#" data-role='button' data-rel='forward' class="ui-btn-right">다음</a>
+		</div>
+		<div data-role="content">제일 첫 번째 페이지 입니다</div>
+
+		<!-- 공통푸터바 추가  -->
+		<div data-role="footer" data-position='fixed'>
+			<div data-role="navbar">
+				<ul>
+					<li><a href="03_toolbar_header_fisrt.html" data-icon="check" data-transition="flow">처음</a></li>
+					<li><a href="03_toolbar_header_second.html" data-icon="star" data-transition="flow">중간</a></li>
+					<li><a href="03_toolbar_header_third.html" data-icon="phone" data-transition="flow">마지막</a></li>
+				</ul>
+			</div>
+		</div>
+
+	</div>
+</body>
+</html>
+

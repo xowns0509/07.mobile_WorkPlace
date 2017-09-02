@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<script type="text/javascript" src="./js/formCheck.js">
+	// 위 src의 경로인 ./js/formCheck.js는 대문자 구분함. 대문자 구분 안하면
+	// 실제 실행에서 작동하지 않는다. ./js/formCheck.js에 기술된 이벤트 등이 안 걸려.
+	// 그러나 코드 작성시 제대로 작동 될 것처럼 링크가 걸리긴 하니 주의 할 것!	
+	// 이미지 넣을 때와 마찬가지로, ctrl누른 채로 마우스 오버로 제대로 링크가 됬는지 확인 가능
+	// 또한, 참고로 스크립트 태그는 열고 닫고를 줄일 수 없음. <script/> 이런 식으로.
+	// 그래서 굳이 한 줄로 열고 끝내고
+</script>
+
+<title>폼 예제 1</title>
+</head>
+<body>
+  아래의 폼을 완성하시렵니까
+  <br>
+  <br>
+  <form name="frm" method="post" action="something.jsp" onsubmit="return checkFields()">
+    <!-- 웹구조에서 데이터를 전송하는 방식이 method라 하고. get방식, post방식 2가지. -->
+    <!-- method="post"와 get방식의 차이 반드시 알 것. url에 값이 나타나거나 혹은 아니거나 -->
+    <!-- post방식은 보안때문에 사용하기도 하고 파일 업로드에 사용하기도 함.
+    url로 넘길 수 있는 건 한정적. 파일을 2진코드로 풀어서 브라우저 주소표시줄에 넣겠다고?-->
+    <!-- onsubmit="return checkFields()":  서버로 전송(submit) 시
+    checkFields()의 리턴 값이 true인 경우 만 가능, false라면 서버로 전송않음.
+    그렇다면 이 함수 내엔 어떤 것을 검증하는 내용이 기술되어 있겠지. -->
+
+
+    이름 <input type="text" name="name" size="30">
+    <br>
+    <br>
+    전화번호 <input type="text" name="tel" size="30">
+    <br>
+    <br>
+    이메일 <input type="text" name="email" size="50">
+    <br>
+    <br>
+    성별 <input type="radio" name="gender" value="남정네" checked> 남정네 <input type="radio" name="gender" value="여인네"> 여인네
+    <br>
+    <br>
+    <input type="submit" value="눌려봐">
+    <!-- 사용자가 무대뽀로 입력한 값들을 특별한 검증 없이 곧이곧대로 받아  -->
+    <!-- DB에 넘겨주고, DB는 DB대로 형식에 맞지 않아 뱉어내는 과정을 방지하기 위해 -->
+    <!-- 브라우저 내에서 사용자의 입력값을 검증하고 걸러내야 할 필요가 있다. -->
+    <!-- 그것을 자바스크립트가 하는 거고(클라이언트 측이지) -->
+    <!-- 서버측에서는 JSP가 하는 거. -->
+
+    <!-- 버튼과 서브밋의 차이. 타입이 button? 클라이언트에서 해결.
+    submit? 서버로 전송하는 거. 뭘로? 위의 action에 담긴 jsp로. -->
+    <!-- 이 jsp가 없으면 뜨는 에러가 404에러. -->
+
+
+  </form>
+</body>
+</html>

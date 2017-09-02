@@ -1,0 +1,72 @@
+<!DOCTYPE html> 
+<html> 
+	<head>
+		<title>jQuery Mobile</title>
+		<meta charset="euc-kr" /> 	
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
+		
+		<link rel="shortcut icon" href="../image/icon.png">
+		<link rel="apple-touch-icon" href="../image/icon.png"> 
+		
+		<link href="../jQueryLibs/jquery.mobile-1.4.5.min.css" 	rel="stylesheet" type="text/css" />
+		<script src="../jQueryLibs/jquery-1.11.1.js"></script>
+		<script src="../jQueryLibs/jquery.mobile-1.4.5.min.js"></script>
+	</head> 
+
+	<body>
+		<div data-role="page">       
+			<div data-role="header">	    
+				<h1>폼 양식</h1>
+			</div>
+
+			<div data-role="content">
+				<form id="joinForm" method="post" action="#">
+					<div data-role="fieldcontain">
+						<label for="name">이름:</label>
+						<input id="name" type="text" name="name"/> 
+					</div>
+					
+					<div data-role="fieldcontain">
+						<label for="password">비밀번호:</label>
+						<input id="password" type="password" name="password"/>
+					</div>			
+					
+					<div data-role="fieldcontain">
+						<label for="comment">자기소개:</label>
+						<textarea id="comment" name="comment" ></textarea>
+					</div>
+					
+					<div data-role="fieldcontain">
+						<label for="age">Number:</label>
+						<input id="age" type="number" name="age" min="1"  max="150" value="20" />
+					</div>
+
+					<div data-role="fieldcontain">
+						<label for="email">Email:</label>
+						<input id="email" type="email" name="email" value=""  />
+					</div>
+
+					<div data-role="fieldcontain">
+						<label for="homepage">Url:</label>
+						<input id="homepage" type="url" name="homepage"  value=""  />
+					</div>
+					
+					<div data-role="fieldcontain">
+						<label for="tel">Tel:</label>
+						<input id="tel"  type="tel" name="tel" value=""/>
+					</div>
+					
+					<div data-role="fieldcontain">
+						<label for="amount">Range:</label>
+						<input id="amount" type="range" name="amount" 
+								min="0" max="100" value="50"
+								data-theme="e" data-track-theme="b"/>
+					</div>
+					
+		
+				</form>
+			</div>
+		</div>
+	</body>
+</html>
+

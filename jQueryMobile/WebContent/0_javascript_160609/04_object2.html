@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>자바스크립트에서 객체 생성</title>
+<script type="text/javascript">
+	//1. Object 객체 이용하여 객체 생성
+	var person = new Object();
+	person.name = '홍길자'; //name 프로퍼티 값.
+	person.tel = '02-123-4567'; // tel 프로퍼티 값.
+	console.log(person);
+
+	//2. 객체 리터럴 이용하여 객체 생성
+	var sonnim = {};
+	sonnim.name = '홍길준';
+	sonnim.tel = '02-123-4567';
+	console.log("sonnim 객체 출력: " + sonnim);
+	console.log(sonnim);
+
+	// 객체에 동적으로 함수도 추가 가능할 까?
+	sonnim.func = function() {
+		console.log('sonnim에 추가한 함수호출');
+	};
+	console.log("sonnim.func으로 func을 추가한 sonnim 객체 출력: ");
+	console.log(sonnim);
+
+	// sonnim.func(); 출력해보기
+	sonnim.func();
+
+	var customer = {
+		name : '홍길동',
+		tel : '032-333-3333',
+		level : 'default',
+		setLevel : function(level) {
+			this.level = level;
+		}
+	};
+	// 이런식으로 하는걸 제이슨 구조.
+	
+	console.log(customer);
+	console.log(customer.name);
+	
+	console.log("setLevel함수의 인자에 3넣고 다시 출력");
+	customer.setLevel(3);
+	console.log(customer.name);
+	
+	// 3. 함수객체: 생생자 함수를 이용해서 객체를 생성(대문자로 시작)
+	//대문자로 시작하기를 권장 할 뿐.
+	function Saram(){
+		console.log('객체생성');
+	}
+	var s1 = new Saram();
+	var s2 = Saram();
+	// 어떤 경우 일 때 함수이고 어떤 경우 일 때 객체인가
+	
+	// Saram은 보기엔 함수처럼 보이지만 객체다.
+	
+	function Cars(options){
+		this.name = options.name || '아무나';
+		this.gear = 0;
+		this.drive = function(options){
+			this.gear = options.gear;
+			this.accel = options.accel;
+			console.log('기어: '+this.gear +', 엑셀: ' + this.accel);
+		}
+	}
+	// 이런 구조가 있는 데... 함수 아니야 객체야.
+
+	//아래와 같이 객체 생성
+	var j = new Cars({name:'재규어'});
+	console.log(j.name);
+	j.drive({gear: 2, accel: 3});
+	
+	// var m = new Cars();
+	// console.log(m.name)
+	// var m = new Cars(); 이렇게 하면 Cars는 함수가 아니라 객체기 때문에;
+	// Uncaught TypeError: Cannot read property 'name' of undefined 뜸.
+	
+	var k = new Cars({});
+	console.log(k.name)
+	
+	
+	
+</script>
+
+</head>
+<body>
+
+</body>
+</html>

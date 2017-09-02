@@ -1,0 +1,100 @@
+<!--
+
+ 1. 문서를 출력 
+ 
+	document.open()	: 문서의 출력을 시작
+	docuemnt.close(): 문서의 출력을 종료 
+					 (* open()으로 출력을 시작한 문서는 반드시 close()로 작업을 종료해야 함 )
+	document.clear(): 문서를 삭제 
+					 ( 다른 프레임이나 윈도우의 내용을 삭제하고 싶을 경우만 사용 )
+					 
+ 2. 문자열을 출력
+ 	document.write() : 문자열을 출력
+ 					 ( 문자열을 연결할 땐 + 나 ,(콤마)로 연결 )
+
+ -->
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Document 예제</title>
+<meta charset="UTF-8">
+<style type="text/css">
+body {
+	background-color: #ff2233;
+	color: #2233ff;
+}
+/*그러나 밑의 스크립트에서 document부분은 새로운 문서가 되므로 영향을 못미침.*/
+</style>
+<!--  스타일 부터 기술하고 그다음 스크립트를 기술하자.
+규칙은 아닌데 그렇게 안하면 안되는 경우가 발생 -->
+
+<script type="text/Javascript">
+
+//축약형
+	window.onload = function init() {
+		
+		document.getElementById('btn').onclick = show_document;
+		
+		/* 버튼 먼저 위에서 id=btn으로 걸어주고
+		그 다음에 밑에 내용을 기술
+		값을 갖고 오는 것 자체는 밑에 내용이고
+		일단 btn에 이벤트는 걸어줘야 하니까 */
+		
+		function show_document() {
+			/*
+				1. 사용자이름 텍스트필드의 입력값을 변수로 지정
+				2. 문서를 연다
+				3. 문서에 쓴다 ( 예 : 환영합니다. 누구누구 님 )
+				4. 문서를 닫는다
+			 */
+
+			var today = new Date();
+
+			//1번 방식
+			//텍스트 필드의 내용을 찾기 위해... 일단 화면에서 찾아야 하지. body에서.
+
+			var name = document.frm.userName.value;
+			//바디의 frm안의 userName안의 값(value)
+			//name=""의 놈들을 잘 보삼. 이름 부여해 준 것들.
+
+			//폼 자체가 동적일 때도 있을 수 있음. 그럼 이름을 부여할 수가 없는 데.
+			//그때는 
+
+			//2번 방식
+			var name2 = document.forms[0].userName.value;
+			//forms의 0번째. 왜 0번째? 1개 밖에 없으므로.
+
+			//3번 방식. id부여. 일반적으로 네임과 동등한 값으로 부여.
+			var name3 = document.getElementById("userName").value;
+
+			document.open(); //새문서를 만들었다는 거임. 새로운 화면. 그래서 이 화면의 배경도 밑에 새로 bgcolor등으로 기술해줘야 해.
+			//document.write("환영합니다. "+ name +"<br/>");//그리고 위의 name을 이 안에다가 기술
+			//document.write("환영합니다. "+ name2 +"<br/>");//2번방식 적용 시 왼쪽과 같이 사용.
+			document.write("환영합니다. " + name3 + "<br/>");//3번방식 적용 시 왼쪽과 같이 사용.
+			document.write("오늘은 " + today.toLocaleString() + "입니다 <br/>");
+			document.write("<img src = '../images/1.jpg' title = '두둠칫' />");
+			document.bgColor = '#666699';//크롬에서는 백그라운드 색이 적용 안... 됬었지만 현재 되는 듯?.
+			document.fgColor = '#ff22ff';
+			document.close();
+
+			document.getElementById("userName").onclick = function(evt) {
+				alert('이벤트 발생' + evt);
+			}
+
+		}
+	}
+</script>
+</head>
+
+<body>
+  <form name="frm">
+    당신의 이름은? <input type="text" name="userName" id="userName" size="20">
+    <!-- 3번 방식을 위해 id삽입 -->
+    <input type="button" value="눌려봐" id="btn" >
+    <!-- onclick="JavaScript:show_document()"없이 이벤트 걸어주기 위해 id = "btn"으로 줌-->
+
+  </form>
+</body>
+</html>
+

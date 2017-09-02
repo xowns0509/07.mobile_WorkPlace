@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>자바스크립트 함수 만들기</title>
+<script>
+	//1. function 명령어
+	function first() {
+		var txt = document.getElementById('first');
+		txt.style.backgroundColor = 'cyan';
+		txt.style.color = 'orange';
+	}
+
+	//2. Function 생성자 사용
+	var second = new Function(
+			"return document.getElementById('second').style.color = 'blue'; document.getElementById('second').style.backgroundColor = 'red'; ");
+	// 뒤에 하나 더 기술 되어 있는... 아래와 같이 기술된 내용은 실행되지 않는다.
+	// document.getElementById('second').style.backgroundColor = 'red';
+	// 배경을 red로 바꾸는 거였는데 return 자체가 오직 하나만 반환하므로
+	// 글자를 blue로 바꾸라는 놈만 실행됨.
+
+	// 사실 반환값 줄 필요가 없어서 리턴을 줄 필요가 없다.
+	// 따라서 밑처럼 하면 됨.
+	// var second = new Function(
+	// " var txt = document.getElementById('second'); txt.style.backgroundColor = 'red'; txt.style.color = 'white';");
+
+	//3. 함수 리터럴(literal : 데이터타입에 들어있는 값 자체).
+	var third = function() {
+		var txt = document.getElementById('third');
+		txt.style.backgroundColor = 'purple';
+		txt.style.color = 'yellow';
+	}
+</script>
+</head>
+
+<body>
+  <p>
+    <!-- div는 블럭단위로 처리하는 놈 -->
+    <!-- span은 문자단위로 처리하는 놈 -->
+    <span id="first"> function 명령 </span> <input type="button" value="확인" onclick="first()" />
+  </p>
+  <p>
+    <span id="second"> Function 생성자 </span> <input type="button" value="확인" onclick="second()" />
+  </p>
+  <p>
+    <span id="third"> 함수 리터럴 </span> <input type="button" value="확인" onclick="third()" />
+  </p>
+</body>
+</html>

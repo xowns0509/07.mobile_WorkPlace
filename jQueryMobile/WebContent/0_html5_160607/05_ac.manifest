@@ -1,0 +1,15 @@
+CACHE MANIFEST
+
+#앞에 샾 붙인 건 주석
+#캐쉬할 파일
+CACHE:
+05_ac.js
+05_ac.css
+image/offline.png
+
+#다른 리소스 파일은 서버에서 받음
+NETWORK:
+*
+
+FALLBACK:
+# a.jsp가 안되는 상황이라면 b.html로 대치.

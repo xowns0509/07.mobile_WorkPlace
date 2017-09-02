@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- 필터링. 찾아가는거 -->
+
+<meta charset="UTF-8">
+<title>4_jqueryFilter.html</title>
+
+<style type="text/css">
+.bg {
+	background: yellow;
+}
+
+.border {
+	border: 2px dotted green;
+}
+</style>
+
+<script type="text/javascript" src="../lib/jquery-2.0.1.min.js">
+	//첫 번째 $부터 에러가 나면 j쿼리 제대로 받아왔는지 확인해라.
+</script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		//li찾기. 단순히 태그라서 아래처럼 쓰면 됨.
+
+		//1. 첫 번째 요소를 찾아 보더적용
+		$('li:first').css('border', '3px solid blue');
+
+		//2. 짝수 요소들 보더 적용
+		$('li:odd').css('border', '3px solid cyan');
+
+		//3. 4번째 요소 보더 적용
+		$('li:eq(3)').css('border', '6px dashed red');
+		//eq(i)는 클래스 일때도, 요소일 때도 먹힘.
+
+		//4. 2번째 보다 작은 요소들 보더 적용
+		$('li:lt(2)').css('border', '2px dotted purple');
+
+		//5. 0번째 제외한 요소들 보더 적용
+		$('li').not(':eq(0)').css('border', '3px dashed green');
+		//$('li:not(:first)').css('border', '3px dashed green');
+
+		//6. 튀김 단어가 들어간 요소 보더 적용.
+		$('li').filter(':contains(튀김)').css('border', '6px dashed pink');
+		//$('li:filter(:contains(튀김))').css('border', '6px dashed pink');
+
+		//------------------------------
+		// (1) 어묵 요소가 들어간 요소들 전부 보더 적용.
+		$('li:contains("어묵")').css('border', '6px dashed orange');
+		//$('li').filter(':contains(어묵)').css('border', '6px dashed orange');
+		//알아서 자식까지 찾아들어감.
+
+		// 자식을 만들었을 때 4번째 요소는 어떤 것인가
+		$('li:eq(3)').css('border', '6px dashed black');
+
+		// (2) 어묵 밑에있는 자식 요소들만 css의 border 클래스 적용
+		$('#food ul > li').children().addClass('border');
+		// id 찾고 그놈의 모든 자손들 중 ul을 찾고
+		// ul의 자식 li를 찾아냄.
+		// '#food > ul > li'은 불가
+		// food 밑에 바로 ul이 있는 게 아니잖아.
+		// li 한번 거쳐 들어가잖아. 자식이 아니라 자손임.
+
+		// (3) 어묵 밑에있는 자식 요소들을 제외하고 
+		// 마우스를 올리면 css의 bg 적용(마우스 나오면 bg 제거)
+
+		$('ul > li').not('#food ul > li').each(function() {
+			$(this).mouseover(function() {
+				$(this).addClass('bg');
+			});
+
+			$(this).mouseout(function() {
+				$(this).removeClass('bg');
+			});
+		});
+		
+		//어묵 자식 제외한 통째로 변경을 원할 때
+// 		$('ul > li').not('#food ul > li').mouseover(function() {
+// 			$('ul > li').not('#food ul > li').addClass('bg');
+// 		});
+
+	});
+</script>
+
+
+</head>
+<body>
+
+  <h2>내가 좋아하는 음식</h2>
+  <ul id='food'>
+    <li>떡볶이</li>
+    <li>어묵</li>
+    <ul>
+      <li>어묵말이</li>
+      <li>어묵튀김</li>
+      <li>어묵왕</li>
+    </ul>
+
+    <li>닭튀김</li>
+    <li>돼지튀김</li>
+    <li>소튀김</li>
+    <li>오징어튀김</li>
+  </ul>
+
+</body>
+</html>

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>고객관리 프로그램</title>
+
+<script type="text/javascript">
+	var httpReq = null;
+
+	/*
+	 *  입력버튼이 눌렸을 때	
+	 */
+	function insertCustomer() {
+		// 1. XMLHttpRequest 객체 생성
+		httpReq = new XMLHttpRequest();
+
+		// 2. 요청에 대한 응답 처리 이벤트 리스터 등록
+		httpReq.onreadystatechange = handleInsertCustomer;
+
+		// 3. 서버로 보낼 데이터 화면에서 얻어와 생성
+		var name = document.getElementById('name').value;
+		var age = document.getElementById('age').value;
+		var tel = document.getElementById('tel').value;
+		var addr = document.getElementById('addr').value;
+
+		var url = "DataInput.jsp?name=" + name + "&age=" + age + "&tel=" + tel
+				+ "&addr=" + addr;
+		// 4. 서버와 연결 요청 준비
+		httpReq.open("GET", url, true);
+
+		// 5. 실제 데이터 전송
+		httpReq.send(null);
+
+	}
+
+	function handleInsertCustomer() {
+		if (httpReq.readyState == 4) {
+			// readyState==4 데이터 전송 완료인 경우
+			document.inForm.name.value = "";
+			document.inForm.age.value = "";
+			document.inForm.tel.value = "";
+			document.inForm.addr.value = "";
+
+			alert("입력되었습니다.");
+		}
+	}
+
+	/*
+	 * 가져오기 버튼이 눌렸을 때
+	 */
+	function getData() {
+		// 1. XMLHttpRequest 객체 생성
+		httpReq = new XMLHttpRequest();
+
+		// 2. 요청에 대한 응답 처리 이벤트 리스너 등록
+		httpReq.onreadystatechange = handleStateChange;
+
+		// 3. 서버와 연결 요청 준비
+		httpReq.open("POST", "DataSelect.jsp", true);
+		httpReq.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+		//4. 실제 데이터 전송
+		httpReq.send(null);
+		// 데이터 갖고 올게 없잖아. handleStateChange 함수 호출 후 결과만 받아오면 되지.
+
+	}
+
+	function handleStateChange() {
+		if (httpReq.readyState == 4) {
+			// readyState==4 데이터 전송 완료인 경우		
+
+			//alert( httpReq.responseTEXT);
+			//---------------------------------------------------------------
+			// 서버로부터 받은 데이터 처리
+			var xmlDocument = httpReq.responseXML;
+
+			var customerList = xmlDocument.getElementsByTagName("customer")[0];
+			var customer = customerList.childNodes[0];
+			var writeStr = "";
+
+			var customerTBL = document.getElementById("listTable");
+			var tbody = customerTBL.getElementsByTagName("tbody")[0];
+
+			var tbodyLength = tbody.childNodes.length;
+
+			for (a = 1; a < tbodyLength; a++) {
+				var tmpElement = tbody.lastChild;
+				tbody.removeChild(tmpElement);
+			}
+
+			for (i = 0; i < customerList.childNodes.length; i++) {
+
+				//customer  = customerList.childNodes[i];		// => 안된다는데
+
+				customer = customerList;
+
+				var trElement = document.createElement("tr");
+
+				var tdElement1 = document.createElement("td");
+				var tdElement2 = document.createElement("td");
+				var tdElement3 = document.createElement("td");
+				var tdElement4 = document.createElement("td");
+
+				//var txtElement1 = document.createTextNode(customer.getElementsByTagName("name")[0].childNodes[0].nodeValue);
+				//var txtElement2 = document.createTextNode(customer.getElementsByTagName("age")[0].childNodes[0].nodeValue);
+				//var txtElement3 = document.createTextNode(customer.getElementsByTagName("tel")[0].childNodes[0].nodeValue);
+				//var txtElement4 = document.createTextNode(customer.getElementsByTagName("addr")[0].childNodes[0].nodeValue);
+				var txtElement1 = document
+						.createTextNode(customer.getElementsByTagName("name")[i].childNodes[0].nodeValue);
+				var txtElement2 = document
+						.createTextNode(customer.getElementsByTagName("age")[i].childNodes[0].nodeValue);
+				var txtElement3 = document
+						.createTextNode(customer.getElementsByTagName("tel")[i].childNodes[0].nodeValue);
+				var txtElement4 = document
+						.createTextNode(customer.getElementsByTagName("addr")[i].childNodes[0].nodeValue);
+
+				tdElement1.appendChild(txtElement1);
+				tdElement2.appendChild(txtElement2);
+				tdElement3.appendChild(txtElement3);
+				tdElement4.appendChild(txtElement4);
+
+				trElement.appendChild(tdElement1);
+				trElement.appendChild(tdElement2);
+				trElement.appendChild(tdElement3);
+				trElement.appendChild(tdElement4);
+
+				tbody.appendChild(trElement);
+				customerTBL.appendChild(tbody);
+			}
+			setTimeout("getData()", 5000);
+			// 이거 해준 이유. 여러명 할 때.
+			// 5초마다 한 번씩 갖고 오는거야. 다른 상대가 넣은 것도 갱신되어 볼 수 있게.
+			// 하지만 이런건 자원낭비.
+		}
+	}
+</script>
+
+</head>
+
+
+<!-- <body> -->
+<body>
+
+  <h2>고객정보 입력</h2>
+
+  <form name="inForm" method="post">
+    <table border=1>
+      <tr>
+        <td width="80" align="center">Name</td>
+        <td width="50" align="center">Age</td>
+        <td width="100" align="center">Tel</td>
+        <td width="250" align="center">Addr</td>
+      </tr>
+      <tr>
+        <td align="center">
+          <input type="text" size="8" name="name" id="name" value="이름이어라">
+        </td>
+        <td align="center">
+          <input type="text" size="4" name="age" id="age" value="100">
+        </td>
+        <td align="center">
+          <input type="text" size="12" name="tel" id="tel" value="010-3158-4556">
+        </td>
+        <td align="center">
+          <input type="text" size="30" name="addr" id="addr" value="서울시 안산구 부산동">
+        </td>
+      </tr>
+      <tr>
+        <td colspan="4" align="center">
+          <input type="button" value="입력" onClick="insertCustomer();">
+        </td>
+      </tr>
+    </table>
+
+    <br>
+    <hr>
+
+    <h2>고객정보 목록보기</h2>
+    <table border='0' width="510">
+      <tr>
+        <td align="right">
+          <input type="button" value="가져오기" onClick="getData();">
+        </td>
+      </tr>
+    </table>
+    <table border=1 id="listTable">
+      <tr>
+        <td width="80" align="center">Name</td>
+        <td width="50" align="center">Age</td>
+        <td width="100" align="center">Tel</td>
+        <td width="250" align="center">Addr</td>
+      </tr>
+    </table>
+    <div id="myDiv"></div>
+
+  </form>
+</body>
+</html>

@@ -1,0 +1,14 @@
+Object
+sonnim 객체 출력: [object Object]
+Object
+sonnim.func으로 func을 추가한 sonnim 객체 출력: 
+Object
+sonnim에 추가한 함수호출
+Object
+홍길동
+setLevel함수의 인자에 3넣고 다시 출력
+홍길동
+객체생성
+재규어
+기어: 2, 엑셀: 3
+Uncaught TypeError: Cannot read property 'name' of undefined

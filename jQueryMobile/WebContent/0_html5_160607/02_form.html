@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<title>02_form.html</title>
+<link rel="shortcut-icon" href="image/icon.png">
+<!-- 안드로이드 버전 -->
+<link rel="apple-touch-icon" href="image/icon.png">
+<!-- 아이폰 버전 -->
+</head>
+<body>
+	<form action="#">
+		날짜: <input type="date" value="2016-06-07" min="2016-06-01"
+			max="2016-12-31" step="1" /><br /> 범위: <input type="range"
+			value="60" min="1" max="100" step="10" /><br /> 숫자: <input
+			type="number" value="5" min="1" max="10" step="1" /><br /> 검색: <input
+			type='search' /><br /> URL: <input list='url_list' type="url" /><br />
+		메일: <input type='email' /><br /> placeHolder: <input type='text'
+			placeholder="이름을 입력하시던지." /><br /> 문자지정: <input type='text'
+			value="value로 이름입력" /><br />
+			자동포커스 및 required: <input type='text' autofocus required /><br />
+정규표현식: <input type='text' pattern="(010|011|017|018)-\d{3,4}-\d{4}"/><br /> <input type="submit" value="전송" />
+	</form>
+
+</body>
+</html>

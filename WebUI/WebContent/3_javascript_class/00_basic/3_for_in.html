@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript">
+	// 배열선언 및 초기화
+	var arr = [ '송혜교', '전지현', '김태희' ];
+
+	// 자바스크립트 for문은 자바의 그것과 같다.
+	for (var i = 0; i < arr.length; i++) {
+		document.writeln(arr[i]);
+	}
+	document.writeln("<br/>");
+
+	// 향상된 for 문
+	for ( var i in arr) {
+		document.writeln(arr[i]);
+	}
+	document.writeln("<br/>");
+
+	// 자바스크립트의 객체생성
+	var book = new Object();
+	book.title = "자바스크립트";
+	book.publish = "코스타";
+	book.price = 10000;
+
+	/* 객체 임에도 불구하고 '몇 번째' 가 먹힌다.
+	자바스크립트에선 객체가 순서의 개념을 갖고 있다. */
+	for ( var k in book) {
+		document.writeln(book[k]);
+	}
+	document.writeln("<br/>");
+
+	// 자바스크립트의 객체생성 동시 초기화
+	var book = {
+		title : "자바스크립트",
+		publish : "코스타",
+		price : 10000
+	};
+
+	for ( var k in book) {
+		document.writeln(book[k]);
+	}
+	document.writeln("<br/>");
+</script>
+</head>
+<body>
+
+</body>
+</html>

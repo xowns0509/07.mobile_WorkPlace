@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>고급 함수</title>
+<!-- html에 외부자바스크립트와 내부 자바스크립트 연결. -->
+<!-- 외부연결부터 기술함. 그 다음에 내부연결 기술 -->
+<script type="text/javascript" src="js/arg_func.js"></script>
+<script type="text/javascript">
+	// 자바스크립트에선 함수도 다른 함수의 인자가 될 수 있다.
+	// 함수가 다른함수의 인자로도 들어가는거 임. 함수 자체가 변수가 되서.
+
+	function testFunc(args) {
+
+		var data = document.frm.num;
+		// num이 여러개라 data는 배열로 떨어짐.
+
+		if (args = 'sum') {
+			// arrayProcess는 js/arg_func.js파일에 기술되어있다.
+			// arrayProcess의 결과값은 sumResult 혹은 squareResult로 저장됨.
+			// 뭐에 따라서? 두 번째 인자 값이 sum이냐, square이냐에 따라서.
+			// 함수 마저 다른 함수의 인자로 넘어갈 수 있다고.
+			arrayProcess(data, sum);
+			alert('합계: ' + sumResult);
+
+		} else if (args = 'square') {
+			arrayProcess(data, square);
+			alert('합계: ' + squareResult);
+
+		}
+	}
+</script>
+</head>
+<body>
+
+  <!-- 2 -->
+  <form name="frm">
+    <label> 숫자를 입력하세요</label>
+    <br />
+    <input type="text" name="num" size="3" value="1" />
+    <br />
+    <input type="text" name="num" size="3" value="2" />
+    <br />
+    <input type="text" name="num" size="3" value="3" />
+    <br />
+    <input type="text" name="num" size="3" value="4" />
+    <br />
+    <input type="text" name="num" size="3" value="5" />
+    <br />
+    <br />
+    <input type="button" value="총합" onclick="javascript:testFunc('sum')" />
+    <br />
+    <input type="button" value="제곱" onclick="javascript:testFunc('square')" />
+  </form>
+
+</body>
+</html>

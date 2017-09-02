@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	weeks = new Array('일', '월', '화', '수', '목', '금', '토');
+	var initToday = new Date();
+
+	var initYear = initToday.getFullYear();
+	var initMonth = initToday.getMonth();//현재 월에 +1을 더함. 0이 1월, 5가 6월.
+	var initDate = initToday.getDate();
+	var initDay = weeks[initToday.getDay()];
+
+	document.write("<form name = 'frm1' method = 'get' action = 'sevrer.jsp'>");
+
+	//년도 출력
+	function calcYear() {
+		
+		document.write("<select name = 'y'>");
+		//document.write("<option selected>" + d + "</option>");//<option selected>숨쉬기</option>
+		for (var i = (initYear - 5); i <= initYear + 5; i++) {
+			document.write("<option id=year"+i+">" + i + "</option>");// <select name="play" size="8">	
+		}
+		document.write("</select>년");
+		
+	}
+	
+	//월 출력
+	function calcMonth() {
+		
+		document.write("<select name = 'm'>");
+		for (var i = 1; i < 13; i++) {
+			document.write("<option id=month"+i+">" + i + "</option>");
+		}
+		document.write("</select>월");
+		
+	}
+	
+	/* 	전달 마지막 날 구하는거 */
+	//today.setDate(0); 전달의 마지막 날 세팅
+	var forCalcLastDate = new Date();
+	forCalcLastDate.setMonth(initMonth); // 현재 월 값으로 다음 달을 구함. +1 할 필요 없음. 어짜피 동양식 출력을 위해 1을 더한 상태니까.
+	forCalcLastDate.setDate(0); // 다음달이 되었으므로 이걸 기준으로 이 달의 전달 마지막 날짜를 출력. 그럼 현재 월의 마지막 날짜가 나오겠지.
+	
+	//일 출력
+	function calcDay() {
+		
+		document.write("<select name = 'd'>");
+		for (var i = 1; i <= forCalcLastDate.getDate(); i++) {
+			document.write("<option id=day"+i+">" + i + "</option>");
+		}
+		document.write("</select>일");
+		
+	}
+	
+	document.write("</form>");
+	
+	//현재의 다음달 세팅 후
+	//그달 기준으로 전달의 마지막 날을 출력
+
+	window.onload = init;
+	function init() {
+
+		calcYear();
+		calcMonth();
+		calcDay();
+		//calcYear등의 함수로 여기서 frm1을 document.write로 출력해봤자 객체가 되지 못한다.
+		//그래서 화면만 출력되고 아래에 선택하는 행위는 하지 못함.
+		
+		document.frm1.y.options[5].selected = true;
+		document.frm1.m.options[initMonth].selected = true;
+		//인덱스가 0이면 1월, 인덱스가 11이면 12월. initMonth의 값이 5이면 4월이 출력됨.
+		document.frm1.d.options[initDate - 1].selected = true;
+		//오늘이 initDate
+		//이벤트 등록
+		document.getElementById("finger").onclick = result;
+	}
+
+	// 	function result(){
+
+	// 		var idxYearSel = document.frm1.y.selectedIndex; //년도 몇 번째 눌렸는지 알기 위해
+	// 		var valueYearSel = document.frm1.y.options[idxYearSel].text;//선택한 놈의 년도 글씨 얻어오기
+
+	// 		var idxMonthSel = document.frm1.m.selectedIndex; //월 몇번째 눌렸는지 알기 위해
+	// 		var valueMonthSel = document.frm1.m.options[idxMonthSel].text;//선택한 놈의 월 글씨 얻어오기
+
+	// 		var idxDateSel = document.frm1.d.selectedIndex; //날자 몇번째 눌렸는지 알기 위해
+	// 		var valueDateSel = document.frm1.d.options[idxDateSel].text;//선택한 놈의 날짜 글씨 얻어오기
+
+	// 		document.frm1.y.options[??].value
+	// 		document.frm1.m.options[??].value
+	// 		document.frm1.d.options[??].value
+
+	// 		play.options[].text =  
+
+	// 		var adultNum = document.getElementById("adulttf").value * 39000;
+	// 		var childNum = document.getElementById("childtf").value * 29000;
+	// 		var babyNum = document.getElementById("babytf").value * 19000;
+
+	// 		document.getElementById("totaltf").value = adultNum + childNum
+	// 				+ babyNum;
+	//	}
+</script>
+
+</head>
+<body>
+
+  <!-- <form name = 'frm1' method = 'get' action = "serer.jsp">
+<select name = 'y'></select>년
+<select name = 'm'></select>월
+<select name = 'd'></select>일 -->
+  <input type='button' value='손가락' id='finger'>
+  <input type='text' name='w' size='4'>요일
+
+  <!-- </form> -->
+
+</body>
+</html>

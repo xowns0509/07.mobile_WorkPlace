@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Javascript 객체지향 - 상속</title>
+</head>
+<body>
+  <script>
+			// 부모클래스
+			var Animal = function() {
+			};
+			Animal.prototype = {
+				sound : function() {
+					document.writeln('울부짖다 <br/>');
+				},
+				move : function() {
+					document.writeln('동물은 움직인다 <br/>');
+				}
+			};
+
+			// 자식클래스
+			var Dog = function() {
+			};
+			Dog.prototype = new Animal();//자바스크립트에서의 상속
+			//Dob는 Animal을 상속받음.
+
+			//인스턴스화 (객체생성)
+			var dog = new Dog();
+			dog.move(); //부모클래스의 프로토타입을 접근 가능.
+
+			//부모의 함수가 맘에 안들어? 그럼 새롭게 정의해.
+			//부모가 sound함수를 갖고 있지만 자식이 새롭게 정의. 오버라이딩.
+			Dog.prototype.sound = function() {
+				document.write('강아지는 멍멍거립니다.')
+			}
+			dog.sound();//
+
+			//부모한테 원하는 함수가 없음? 그럼 추가해줘.
+			Dog.prototype.wiggle = function() {
+				document.write('wiggle실행: 강아지는 꼬리를 흔듭니다.<br/>');
+			}
+			dog.wiggle();//부모클래스에 없는 함수를 실행
+		</script>
+</body>
+</html>

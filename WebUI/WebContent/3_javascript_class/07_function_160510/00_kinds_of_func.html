@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>자바스크립트 함수 3가지</title>
+<script>
+	// 1. function 명령어
+	function triangle(base, height) {
+		return base * height / 2;
+	}
+	alert('1. function 명령어실행. 삼각형의 넓이는' + triangle(4, 5) + '입니다.');
+
+	
+	// 2. Function 생성자 사용.
+	//객체 생성하듯... 생성자의 인자처럼 값과 기능을 부여. 근데 2번은 잘 안쓰임.	
+	var triangleCons = new Function('base', 'height',
+			'return base * height / 2;');
+	
+	// 첫 번째, 두 번째에 인자가 들어옴. 값같은 거
+	// 마지막 세 번째에 원하고자 하는 기능을 죄다 기술.
+	alert('2. Function 생성자 사용. 삼각형의 넓이는' + triangleCons(3, 2) + '입니다.');
+
+	
+	// 3. 함수 리터럴(literal : 데이터타입에 들어있는 값 자체).
+	// 함수를 변수로 처리 했을 때의 값.
+	var triangleliteral = function(base, height) {
+		return base * height / 2;
+	}
+	alert('3. 함수 리터럴, 삼각형의 넓이는' + triangleliteral(3, 2) + '입니다.');
+</script>
+</head>
+<body>
+
+</body>
+</html>

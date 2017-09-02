@@ -1,0 +1,60 @@
+<!-- DOM: Document Object Model
+[기존방식] 아이디나 네임, 클래스 이름, 태그명으로 찾는 방법.
+document.getElementById('아이디나')
+document.getElementsByClassName('클래스명')
+document.getElementByTagNae('태그명')
+
+서버로 보내기 위해 네임 지정.... 한 걸 읽어내기 위해
+document.폼이름.요소명
+
+[모바일로 넘어오면 추가되는 방식]
+-querySelector('조건'): 첫 번째 일치하는 요소 객체를 반환, 없으면 null
+
+-querySelectorAll('조건'): 일치하는 모든 요소객체를 반환. 찾는 놈이 하나도 없으면 빈 객체 반환.
+위에걸 쓰면 null인지를 확인하고 아래거는 빈 객체인지를 확인해야 함.
+
+ -->
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="euc-kr" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, 
+							maximum-scale=1.0, minimum-scale=1.0, 
+							user-scalable=no" />
+<title>HTML5</title>
+<script type="text/javascript">
+	function fun1() {
+		var div = document.querySelector('#firstDiv');
+		div.innerHTML = 'DIV를 변경합니다.';
+
+	}
+
+	function fun2() {
+		var arr = document.querySelectorAll('#secondDiv input:checked');
+		// 선택한 체크박스의 값들을 firstDiv에 출력.
+		var str = '';
+
+		for (var i = 0; i < arr.length; i++) {
+			str += arr[i].value + '/';
+
+		}
+		firstDiv.innerHTML = str;
+
+	}
+</script>
+
+</head>
+
+<body>
+	<div id="firstDiv" style="background-color: #ffff00">기존 내용</div>
+	<form id="secondDiv">
+		<input type="checkbox" name="framework" value="first" />첫번째 <br /> <input
+			type="checkbox" name="framework" value="second" />두번째 <br /> <input
+			type="checkbox" name="framework" value="thrid" />세번째
+	</form>
+	<button onclick="fun1()">div 찾아 바꾸기</button>
+	<button onclick="fun2()">선택된 항목 찾기</button>
+</body>
+</html>

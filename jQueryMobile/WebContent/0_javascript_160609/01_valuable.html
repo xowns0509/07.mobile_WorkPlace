@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>추가적인 자바스크립트</title>
+<script type="text/javascript">
+	// 1. 변수 hoisting(끌어올리기)
+	function hello() {
+		var foo = bar = '안녕';
+		// 1-2. 자바의 int a = b = 10;와 같은 형식.
+		// 변수 b를 선언 및 10으로 초기화,
+		// 그 후 변수 b의 값으로, 선언된 변수 a에 초기화.
+		// = '안녕을 bar에다 넣고, bar변수의 값을 foo에다가 넣어라'.
+
+		// 하지만 만약 자바였으면 a, b 둘 다 지역변수였음.
+		// 근데 자바스크립트는 var가 붙은 foo만 지역변수가 되고
+		// bar는 var가 안 붙었으니 전역변수가 되어버림.
+		// 그러면 bar는 지역변수는 아니니까 이 함수hello 바깥에서도 쓸 수 있겠다는 거지.
+
+		// 1-3. 전역변수는 그럼 어디다 저장되는 가.
+		// 지역변수는 함수 안의 스택에다 저장되지만,
+		// 자바스크립트는 브라우저가 실행하기에, 전역변수는 윈도우 객체에다 저장.
+
+		// 만약 아래와 같이 했으면 key, hal 모두 전역변수가 되.
+		key = hal = '안녕'
+	}
+
+	hello();
+	// console.log("foo: " + foo);
+	// 1-1. 위의 문장을 주석 해제 후 콘솔 띄워보면 정의가 안 되어 있데. foo를 안 에다 생성했으니까.
+	console.log("bar: " + bar);
+
+	// 1-4. 윈도우 객체를 콘솔로 찍어보자
+	// window.bar = window객체 안에 bar변수
+	console.log("window객체 출력: " + window);
+	console.log("window.bar 출력: " + window.bar);
+	console.log("window.foo 출력: " + window.foo);
+	// 얘는 안나오겠지(undefined). foo는 전역변수 아니니까
+	console.log("window['bar'] 출력: " + window['bar']);
+	// window.bar == window['bar']
+	// 자바스크립트는 점접근(.bar) 외 배열 인자인 것마냥 접근 가능하잖아.
+
+	// 1-5. window는 창 자체를 말하는 거임. 따라서,
+	// window.bar >> this.bar로도 표현가능.
+	// 자바스크립트의 this는 매우 헷갈리는 경우가 많지만,
+	// 지금 이 예문에서의 this는 윈도우를 뜻하는 것이므로 브라우저의 창을 나타냄.
+	// 즉 this라는 건 브라우저 자체를 나타낼 경우도 있다.
+	console.log("this.bar 출력: " + this.bar);
+
+	// 2.변수 스코프 체인
+	var z = 10;
+	y = 20;
+	x = 30;
+
+	function foo2() {
+		console.log("밖에서 x = 30;으로 선언 후, foo2()안에서 x출력: " + x);
+		// x는 뭐가 나올 거 같에? 10이 나올 거 같지? undefined 나와. 왜?
+
+		// y는 20으로 제대로 출력 될 까? >> 예
+		console.log("밖에서 y = 20;으로 선언 후, foo2()안에서 y출력: " + y);
+
+		// z은 10으로 제대로 출력 될 까? >> 예
+		console.log("밖에서 var z = 10;으로 선언 후, foo2()안에서 z출력: " + z);
+		if (true) {
+			console.log("foo2()의 if절 내 var x = 20 전 x출력: " + x);// undefined
+			var x = 20;
+			w = 40;
+			var v = 50;
+			console.log("foo2()의 if절 내 var x = 20 후 x출력: " + x);// x는 20 출력.
+		}
+		// if절 안에 var x로, x가 지역변수로 선언되었다.
+		// function foo2에서가 아니라 foo2 내의 if절에 선언 된 것만으로도
+		// function바운더리 내의 x란 변수는 아직 값이 지정되지 않아 undefined 뜸.
+
+		// 재밌는 건, if절 내에 저장되었던 x의 값이, if절 빠져나와서도 유효하다는 것.
+		console.log("foo2()의 if절 내 var x = 20 후, if절 밖에서 x출력: " + x);// x는 20 출력.
+
+	}
+	// 만약에 foo2()안의 if절 내에서 w = 40와 var v = 50;후 출력하면 어떻게 될까.
+	// 우선 foo2()실행하기 전엔 w가 존재자체를 안하므로 바로 아래의 구문은 예외발생됨.
+	// console.log("foo2()의 if절 내 w = 40; 후, foo2() 밖에서 w출력1: " + w);
+	foo2();
+	
+	// foo2()가 실행 되어 위의 콘솔문이 모두 출력 후 w의 값과 x의 값,
+	// 그리고 v를 출력해 봄.
+	console.log("foo2()의 if절 내 w = 40; 후, foo2() 밖에서 w출력2: " + w);// w는 40 출력.
+	console.log("foo2()의 if절 내 var x = 20 후, foo2() 밖에서 x출력: " + x);// x는 30 출력.
+	console.log("foo2()의 if절 내 var v = 20 후, foo2() 밖에서 v출력: " + v);// 에러발생. v is not defined
+	
+	// 그 결과, w는 40으로 출력되고 x는 foo2()바깥에서 정의했던 30으로 값이 출력됨.
+	// v는 에러발생한다. function의 경계를 벗어났기에 예상했던 그대로 적중.
+	
+	// 정리. function에서 var로 변수 선언하면 지역변수가 된다만,
+	// 변수의 유효범위는 제어문 내에서 혹은 밖에서 선언되었던, 함수 내 에서 모두 유효. 
+	// 따라서 선언순서는 절차적이지 않다. 그러나 변수의 값 지정은 절차적.
+
+	// 자바스크립트에 객체를 선언하는 방식을 JSON방식.
+</script>
+</head>
+<body>
+
+</body>
+</html>

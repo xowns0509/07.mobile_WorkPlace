@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	//1. 올해연도를 기준으로 -5에서 +5으로 년도값을 지정
+	//2. 월과 일을 지정 ( 일값이 매달 마다 다르게 )
+	//3. 초기값 오늘 날짜 셋팅
+	//4. 윤년
+
+	//   1.  올해년도를 기준으로 -5에서 +5으로 년도값을 셋팅 
+	window.onload = function() {
+		var date = new Date();
+
+		var yarr = new Array();
+		var marr = new Array();
+		var darr = new Array();
+
+		for (var i = -5; i <= 5; i++) {
+			var yy = date.getFullYear() + i;
+			document.getElementById('y').add(new Option(yy, yy));
+		}
+
+		for (var i = 1; i <= 12; i++) {
+			document.getElementById('m').add(new Option(i));
+		}
+
+		document.getElementById('m').onclick = function() {
+
+			document.getElementById('d').length = 0;
+
+			var changedate = new Date();
+			changedate
+					.setFullYear(document.getElementById('y').options[document
+							.getElementById('y').selectedIndex].text);
+
+			changedate.setMonth(document.getElementById('m').options[document
+					.getElementById('m').selectedIndex].text);
+
+			var k = changedate.setDate(0);
+
+			var kk = changedate.getDate();
+
+			for (var i = 1; i <= kk; i++) {
+				document.getElementById('d').add(new Option(i));
+			}
+		}
+
+		document.getElementById('finger').onclick = function() {
+
+			var selectdate = new Date();
+			var warr = new Array('일', '월', '화', '수', '목', '금', '토');
+			selectdate.setFullYear(
+					document.getElementById('y').options[document
+							.getElementById('y').selectedIndex].text, document
+							.getElementById('m').options[document
+							.getElementById('m').selectedIndex].text - 1,
+					document.getElementById('d').options[document
+							.getElementById('d').selectedIndex].text);
+
+			document.getElementById('w').value = warr[selectdate.getDay()];
+
+		}
+
+		document.getElementById('y').value = date.getFullYear();
+		document.getElementById('m').value = date.getMonth() + 1;
+		document.getElementById('d').add(new Option(date.getDate()));
+
+	}
+</script>
+</head>
+<body>
+  <form name='frm' method='get' action='server.jsp'>
+    <select name='y' id='y'></select>
+    년
+    <select name='m' id='m'></select>
+    월
+    <select name='d' id='d'></select>
+    일 <input type='button' value='☞' id='finger'> <input type="text" name='w' size='4' id='w'>요일
+  </form>
+
+</body>
+</html>

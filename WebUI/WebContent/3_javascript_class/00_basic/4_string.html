@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- 자바스크립트에서의 스트링 -->
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript">
+	/* 자바스크립트 안에서는 문자와 문자열의 구분이 없음 */
+	var str = '너의 삶 속에 나의 삶을 넣어 삶을 영위하자';
+	document.write("str.indexOf('삶'): " + str.indexOf('삶') + "<br/>"); //3
+	document.write("str.lastIndexOf('삶'): " + str.lastIndexOf('삶') + "<br/>");//16
+	document.write("str.indexOf('삶을'): " + str.indexOf('삶을') + "<br/>");//11
+	document.write("str.length: " + str.length + "<br/>");//24
+
+	/* 띄어쓰기도 글자 1개, 한글도 글자 1개 */
+	var str = '너의           삶 속에 나의 삶을 넣어 삶을 영위하자';
+	document.write(str + "<br/>");
+	document.write("str.indexOf('삶'): " + str.indexOf('삶') + "<br/>");//3
+	document.write("str.lastIndexOf('삶'): " + str.lastIndexOf('삶') + "<br/>");//16
+	document.write("str.indexOf('삶을'): " + str.indexOf('삶을') + "<br/>");//11
+	document.write("str.length: " + str.length + "<br/>");//24
+
+	document.write(msg + "<br/>");
+	var msg = '자바에서 웹프로젝트까지 열심히 해라!';
+	document.write("msg.charAt(3)출력: " + msg.charAt(3) + "<br/>");
+	
+	/* slice(5, 12) 5번째 부터 12번째 까지 짤라서 표현
+	substring(5, 12) 도 참조한다는 거라서 결국 slice와 같아.*/
+	document.write("msg.slice(5, 12)출력: " + msg.slice(5, 12) + "<br/>");
+	document.write("msg.substring(5, 12)출력: " + msg.substring(5, 12) + "<br/>");
+
+	/*substr은 5번째부터 글자 7개를 반환하라는 거 */
+	document.write("msg.substr(5,7)출력: " + msg.substr(5, 7) + "<br/>");
+	document.write("msg.split(' ')출력: " + msg.split(' ') + "<br/>");
+	document.write("msg.concat('화이팅')출력: " + msg.concat('화이팅') + "<br/>");
+</script>
+
+</head>
+<body>
+
+</body>
+</html>

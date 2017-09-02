@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>아이디 중복 검사</title>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		
+		$('#id_check').click(function(){
+			$.ajax({
+				url: 'IdCheck.jsp',
+				type: 'GET',
+				data: ({userid: $("input[name=id]").val() }),
+				dataType: 'text',  //응답데이터 종류: text/xml/json/jsonp
+				success: function(data){
+					if(jQuery.trim(data) == 'YES'){
+						$('#idmessage').text('이미 사용중인 아이디입니다.');
+						$('#idmessage').show();
+					}else{
+						$('#idmessage').text('사용가능한 아이디입니다.');
+						$('#idmessage').show();
+					}
+				}
+			// 처리 콜백 함수: beforeSend, complete, error, success
+			});
+		});
+
+	});
+</script>
+</head>
+<body>
+
+  <input name="id" type="text" class="userinput" size="15" />
+  <button type="button" id="id_check">중복체크</button>
+  <br />
+  <br />
+  <div id="idmessage" style="display: none;"></div>
+
+</body>
+</html>

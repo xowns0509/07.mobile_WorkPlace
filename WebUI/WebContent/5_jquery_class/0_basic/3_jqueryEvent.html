@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+	<script>
+	$(function() {
+		$('li').bind('click', function() {//click이벤트와 이 후의function을 묶음. bind
+			$('#result').text(this.innerHTML)
+		}).css('cursor', 'pointer');//손가락 모양 추가
+
+		// 	$('li').one('click', function(){//one은 한번만 이벤트가 발생해. bind는 한 번이 아니지.
+		// 		$('#result').text(this.innerHTML)
+		// 	}).css('cursor','pointer');//손가락 모양 추가
+
+		//동적인 li태그를 만들기
+		$('h1').click(function(){
+			var li = $('<li/>').html( new Date());
+			$('ul:first').append(li);//ul의 첫번째 자식에 li를 붙여
+			
+			
+			
+			
+			$('ul').on('click', 'li', function(){
+				//동적인 이벤트 걸때 쓰는 놈이 on. 1.7버전 이후
+				//1.7버전 이전은 live로. 지금 여기에 쓰는 놈이 1.12버전으로 12버전임. 더 높은거.
+				$('#result').text(this.innerHTML);
+			});
+			
+			
+			
+			
+		});
+	//그러나 동적으로 만들어 준 놈들한테는 이벤트가 안걸림
+		
+		$('li').click(function() {//click이벤트와 이 후의function을 묶음. bind
+			$('#result').text(this.innerHTML)
+		}).css('cursor', 'pointer');//손가락 모양 추가
+		
+		$('li').click(function(evt) {//인자가 필요하면 그냥 받는다고 넣어주면 됨.
+			for(var prop in evt){
+				console.log(prop + '=' + evt[prop]);//브라우저 콘솔 출력용
+			}
+			$('#result').text(this.innerHTML)
+		}).css('cursor', 'pointer');//손가락 모양 추가
+
+	});
+
+	/* this와 $(this)의 차이점 */
+</script>
+
+</head>
+<body>
+
+  <h1>제이쿼리 이벤트</h1>
+  <ul>
+    <li>서울</li>
+    <li>우슈아리아</li>
+    <li>시베리아</li>
+    <li>오로라</li>
+  </ul>
+
+  <div id='result'></div>
+
+</body>
+</html>

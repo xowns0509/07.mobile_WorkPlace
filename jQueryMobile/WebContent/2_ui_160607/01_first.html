@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+
+<title>기본 템플릿</title>
+
+<link rel="shortcut icon" href="../image/icon.png">
+<link rel="apple-touch-icon" href="../image/icon.png">
+
+<link href="../jQueryLibs/jquery.mobile-1.4.5.min.css" rel="stylesheet" type="text/css" />
+<script src="../jQueryLibs/jquery-1.11.1.js"></script>
+<script src="../jQueryLibs/jquery.mobile-1.4.5.min.js"></script>
+</head>
+<body>
+	<div data-role="page">
+		<div data-role="header" data-position="fixed">
+			<h1>Header</h1>
+		</div>
+		<div data-role="content">
+			<h1>내용</h1>
+
+			<a href="01_second.html" data-role="button" data-icon='power' data-transition="flow">다음페이지</a>
+			<br />
+			<a href="01_second.html" data-rel="dialog">다이얼로그</a>
+			<br />
+		</div>
+		<div data-role="footer" data-position="fixed">
+			<h1>Footer</h1>
+		</div>
+	</div>
+</body>
+</html>
+
+<!-- 
+http://jquerymobile.com/demos/1.2.0/docs/api/data-attributes.html
+
+Link
+Links, including those with a data-role="button", and form submit buttons share these attributes
+
+data-ajax	true | false
+data-direction	reverse - Reverse transition animation (only for page or dialog)
+data-dom-cache	true | false
+data-prefetch	true | false
+data-rel	back - To move one step back in history
+dialog - To open link styled as dialog, not tracked in history
+external - For linking to another domain
+popup - For opening a popup
+data-transition	fade(서서히 나타남) | flip(뒤집혀 나타남) | flow | pop | slide | slidedown | slidefade | slideup | turn | none
+data-position-to	origin - Centers the popup over the link that opens it
+jQuery selector - Centers the popup over the specified element
+window - Centers the popup in the window
+Note: option only available when used with popups. See also: popup options.
+
+ -->

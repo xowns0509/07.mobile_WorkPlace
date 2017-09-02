@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript">
+	// 1. 자바스크립트의 형변환
+	// var n = '0770';//문자열
+	// var n = '77.01'//실수형
+	var n = '123abc'
+	document.write(Number(n) + "<br/>");//숫자로 만들어버림. 123abc일 경우 NaN(Not a Number)으로 출력됨. 온전한 숫자가 아니므로.
+	document.write(parseInt(n) + "<br/>");//정수형으로 만듦. 123abc일 경우 숫자만 골라서 출력됨. 그러니까 123만 출력되는 거
+	document.write(parseFloat(n) + "<br/>");//실수형으로 만듦. 이것도 변수의 값이 123abc일 경우 위와 마찬가지.
+
+	// 2. 자바스크립트에서 문자열과 숫자의 연산( 더하기/ 빼기 )
+	// ex) 'yes' + 3 => 'yes3'
+
+	// 문자열에 4를 더하면 어떻게 나올 까?
+	document.write("문자열 + 숫자 => 문자열: ('123' + 4) 출력은 " + ('123' + 4) + "</br>");
+	document.write("문자열 - 숫자 => 숫자: ('123' - 4) 출력은 " + ('123' - 4) + "</br>");
+
+	document.write(typeof ('123' + 4) + "</br>");//문자열 + 숫자 => string
+	document.write(typeof ('123' - 4) + "</br>");//문자열 - 숫자 => number
+
+	// 3. eval() -> 문자열을 태그처럼 실행.
+	var str = 'window.alert("안녕하세요")';
+	// eval() 괄호 안에 자바스크립트 코드를 써넣음.	 
+
+	document.write("str출력: " + str);
+
+	// alert은 화면에 팝업경고창을 출력하는 거. window.alert의 줄인 명령. 고로 같은 거임.
+	// alert() 괄호 안에 문자열을 담아 경고메세지를 출력할 수 있다. 고로
+	// 아래와 같이 기술하면 홑따로 감싼 window.alert("안녕하세요")까지 팝업경고창에 다 출력됨.
+	alert(str);
+
+	// eval(str)로 기술하면 앞의 메세지인 window.alert 자체가 실행문이므로 그걸 실행해버림.
+	// 따라서 "안녕하세요"만 출력되.
+	eval(str);
+</script>
+
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!-- 자기를 열어준 창을 제어할려면? opener -->
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>여기가 원래 창</title>
+</head>
+<body bgcolor="#ddddff">
+  이 화면은 원래 창. 3_1_window_opener.html임
+  <br />
+  3_1_window_opener.html이 3_2_window_opened.html을 팝업으로 띄움.
+  <br />
+  <br />
+  3_1_window_opener.html은 3_2_window_opened.html를 열어주었음.
+  <br />
+  3_2_window_opened.html이 3_1_window_opener.html를 제어하는 형태.
+  <br />
+
+
+  <!-- 첫 번째 화면을 띄우자 마자 두번째 화면을 띄우고자 해. 팝업으로. -->
+  <!-- 그래서 body안에 스크립트를 넣은 거야. 그럼 무조건 실행하겠지. -->
+  <!-- 이러한 형태는 우편번호 선택하는 거랑 비슷. -->
+  <script type="text/javascript">
+			//3_2_window_opened.html 창을 팝업으로 열기
+			window.open("3_2_window_opened.html", "새창의 이름이라고. 필요없다고.",
+					"width=800, height=280");
+
+			// 3_1_window_opener.html는 3_2_window_opened.html를 열어주었고
+			// 3_2_window_opened.html는 3_1_window_opener.html를 제어하는 형태.
+		</script>
+</body>
+</html>

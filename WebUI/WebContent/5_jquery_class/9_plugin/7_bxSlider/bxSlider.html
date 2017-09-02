@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko">
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<title>Plugin</title>
+<style type="text/css">
+* {
+	margin: 0;
+	padding: 0;
+}
+
+img {
+	border: none 0;
+	vertical-align: top;
+}
+
+#banner_wrap {
+	position: relative;
+	width: 470px;
+	margin: 0 auto;
+}
+
+#prevBtn {
+	position: absolute;
+	left: 0;
+	top: 10px;
+}
+
+#nextBtn {
+	position: absolute;
+	right: 15px;
+	top: 10px;
+}
+</style>
+
+<!-- jQuery library (served from Google) -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<!-- bxSlider Javascript file -->
+<script src="./js/jquery.bxslider.min.js"></script>
+<!-- bxSlider CSS file -->
+<link href="./css/jquery.bxslider.css" rel="stylesheet" />
+<script type="text/javascript">
+	$(function() {
+
+		//wooreeweb.com/lecture/archives/140
+		//### bxslider.com 을 보면서  기본 속성을 지정해야 나옴.
+		var bx = $('#slide_banner').bxSlider({
+			//그림이 여러개가 있지만 처음 4개만 보고 싶으면
+			minSlides: 4,
+			maxSlides: 4,
+			slideMargin: 5, 	//슬라이드 간 간격
+			slideWidth: 90,		//슬라이드의 너비
+			
+			auto: true,
+			speed: 1800,			//마지막 줄은 항상 콤마 없이
+			moveSlides: 1,
+			
+			pager: true,	// 기본값이 true고 false면 밑의 동그라미버튼 사라짐
+			autoHover: true //배너는 마우스 올리면 멈춰야 하잖아.
+			
+		});
+		
+		$('#prevBtn').click(function(){
+			bx.goToPrevSlide();
+			return false; //<a>태그의 링크속성 차단시켜줌.
+		});
+		
+		$('#nextBtn').click(function(){
+			bx.goToNextSlide();
+			return false; //<a>태그의 링크속성 차단시켜줌.
+		});
+		
+	});
+</script>
+
+</head>
+<body>
+  <div id="banner_wrap">
+    <ul id="slide_banner">
+      <li><a href="#"><img src="images/pic_t1.jpg" alt="사진1" /></a></li>
+      <li><a href="#"><img src="images/pic_t2.jpg" alt="사진2" /></a></li>
+      <li><a href="#"><img src="images/pic_t3.jpg" alt="사진3" /></a></li>
+      <li><a href="#"><img src="images/pic_t4.jpg" alt="사진4" /></a></li>
+      <li><a href="#"><img src="images/pic_t5.jpg" alt="사진5" /></a></li>
+      <li><a href="#"><img src="images/pic_t6.jpg" alt="사진6" /></a></li>
+      <li><a href="#"><img src="images/pic_t7.jpg" alt="사진7" /></a></li>
+      <li><a href="#"><img src="images/pic_t8.jpg" alt="사진8" /></a></li>
+    </ul>
+    <p>
+      <a href="#" id="prevBtn"><img src="images/prev_btn.png" alt="이전버튼" /></a>
+    </p>
+    <p>
+      <a href="#" id="nextBtn"><img src="images/next_btn.png" alt="다음버튼" /></a>
+    </p>
+  </div>
+</body>
+</html>

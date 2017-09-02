@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<!-- 쿠키를 왜 써야 하냐면 -->
+<!-- 사용자 측에서 브라우저를 통해 데이터를 저장해야 함. -->
+<!-- 오늘 하루 열지 않겠습니다. 또는 id저장하는거  -->
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>jquery.cookie</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.0.js"></script>
+<script type="text/javascript" src="js/jquery.cookie.js"></script>
+<!-- 쿠키플러그인 -->
+<script type="text/javascript">
+
+$(function(){
+	
+	$('#txtMail').val($.cookie('email'))
+	
+	$('#btnSave').click(function(){
+		
+		$.cookie( "email", $('#txtMail').val(), {expires : 30} );
+
+		//쿠키 사용하기. 원래는 이름과 값으로 문자열 형식으로 저장.
+		//사용자가 입력한 값 어떻게 갖고오기
+		
+		//브라우저 닫을 때 까지. 또는 시간(초단위)을 부여 할 수도 있음. 
+	});
+});
+
+</script>
+</head>
+<body>
+  <form method="POST" action="">
+    메일 어드레스： <input id="txtMail" type="text" size="50" />
+    <input id="btnSave" type="button" value="송신" />
+  </form>
+</body>
+</html>

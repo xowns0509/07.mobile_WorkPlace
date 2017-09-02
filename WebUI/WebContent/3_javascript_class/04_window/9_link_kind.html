@@ -1,0 +1,52 @@
+<!-- link의 종류. -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script type="text/javascript">
+	function moveA() {
+		//window.location.href = "http://www.naver.com"
+		//또는 window 생략 가능. 왜냐면 location이 window 밑에 있는 걸 인식하고 있으므로.
+		//심지어 location만 남겨도 됨.
+		location.href = "http://www.naver.com"
+
+	}
+
+	function moveB() {
+		window.location = '../02_document/1_documentOpen_noonclickevt_merge.html';
+		//내부 html로도 연결 가능. 끝에 href 빼도 사용은 가능한가 봄.
+
+	}
+</script>
+
+<title>9_link_kind.html</title>
+</head>
+<body>
+
+  링크 종류
+  <br />
+  <br />
+  1.하이퍼링크
+  <br />
+  <!-- a태그. 하이퍼링크용. a태그로 감싸면
+   a태그 안에 있는 글씨나 버튼이 하이퍼링크로 작동. -->
+  <a href="http://www.daum.net"> 다음으로</a>
+  <hr />
+
+  2.버튼류 클릭
+  <br />
+  <!-- 최근에 뜨는 방법. 모바일에서. -->
+  <!-- 왜냐면, 모바일은 데이터를 최소화 해야 하므로
+  또, html특성 상 이미지가 구조보다 늦게뜬다.
+  이미지로 버튼을 만들면 이게 무슨 버튼인지 어떻게 알음?(alt로 가능하긴 하다만.) -->
+  <input type='button' value='야구동영상' onclick="moveA()">
+  <!-- onclick으로 함수호출, 그럼 위의 자바스크립트에서 moveA()가 기술되어있어야 겠지.-->
+
+  3.이미지에 클릭이벤트 걸기
+  <br />
+  <img src='../images/icon.gif' onclick='moveB()' style="cursor: pointer">
+  <!-- onclick으로 함수호출. 자바스크립트영역에서 moveB()가 기술되어있어야 겠지.-->
+  <!-- style = "cursor:pointer"로 이미지에 마우스 오버 할 때 손가락 나오게 함. -->
+
+</body>
+</html>

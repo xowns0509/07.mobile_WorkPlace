@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title> 메뉴판</title>
+<link href = "./style.css" rel= "stylesheet" type="text/css">
+<script type="text/javascript" src = './script2.js'>
+
+</script>
+</head>
+<body>
+
+<table border='1'>
+	<tr>
+		<td id='menu1' class='menu'>아메리카노<br/>1000원</td>
+		<td id='menu2' class='menu'>카페라떼<br/>2000원</td>
+		<td id='menu3' class='menu'>쥬스<br/>3000원</td>
+	</tr>
+	<tr>
+		<td id='menu4' class='menu'>과자<br/>2000원</td>
+		<td id='menu5' class='menu'>엿<br/>1000원</td>
+		<td id='menu6' class='menu'>땅콩<br/>1500원</td>
+	</tr>
+	<tr>
+		<td colspan='3'>
+			갯수 :  <select id='count'>
+							<option value='1'>1</option>
+							<option value='2'>2</option>
+							<option value='3'>3</option>
+							<option value='4'>4</option>
+						</select>
+			<input type='button'	value='확인'  id='btn'/>		
+			총합 : <input type='text'  id='total'/>원
+		</td>
+	</tr>
+</table>
+<h2> 주문한 내역 </h2>
+<table border = 1 id="listTable">
+  <tr>
+    <td width="80" align="center">메뉴</td>
+    <td width="50" align="center">수량</td>
+    <td width="100" align="center">단가</td> 
+    <td width="250" align="center">Total</td>
+  </tr>
+</table>
+<div id='content'></div>
+</body>
+</html>

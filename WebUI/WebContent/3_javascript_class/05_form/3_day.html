@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>폼 예제 3</title>
+<script type="text/javascript">
+	//이벤트 핸들러. 손가락버튼에다
+
+	//축약형
+// 	window.onload = function() {
+
+// 		document.getElementById('fingerbtn').onclick = function() {
+// 			alert('fingerbtn 이벤트 발생');
+
+// 		}
+// 	}
+
+	/*var frm1 = document.frm1; 이게 여기 있으면 안 됨.
+	 window.onload자체가 화면에 뜬 후에 일어나는 건 데
+	 frm1이 나타나기도 전에 frm1을 참조하는게 말이 되냐.
+	 화면 뜨지 않으면 frm1 자체가 존재하지 않는 거.*/
+
+	weeks = new Array('일', '월', '화', '수', '목', '금', '토');
+
+	window.onload = init;
+	//함수를 연결할 때는 괄호 안쓰는 거임. init(); 이 아니라 init;. 단순히 연결시켜주는 거.
+
+	function init() {
+		//오늘 날짜 구해서 화면에 set
+		var initToday = new Date();
+
+		frm1.y.value = initToday.getFullYear();
+		frm1.m.value = initToday.getMonth() + 1;
+		frm1.d.value = initToday.getDate();
+		frm1.w.value = weeks[initToday.getDay()];
+
+		//손가락 버튼	
+		document.getElementById("fingerbtn").onclick = btn_click;
+		//1. Date형 변수선언
+		//2. 화면의 입력한 값들로 Date의 년 월 일을 지정.
+		//3. 해당하는 요일을 얻어와서 화면출력.
+	}
+
+	function btn_click() {
+		//이벤트 했을 때 행해지는 함수.
+		//따로 window.onload시 실행되는 함수 안에 있을 필요 없음.
+
+		var today = new Date();
+		today.setYear(frm1.y.value);
+		today.setMonth(frm1.m.value - 1);
+		today.setDate(frm1.d.value);
+
+		//document.frm1.w.value = today.getDay();
+		frm1.w.value = weeks[today.getDay()];
+
+		//alert('fingerbtn 이벤트 발생');
+	}
+</script>
+
+</head>
+<body>
+
+  <hr>
+  <hr>
+
+  요일을 알아봅시다.
+  <br>
+
+  <form name="frm1">
+    <input type="text" name="y" size=4>년 <input type="text" name="m" size=2>월 <input type="text" name="d" size=2>일 <input type="button" id="fingerbtn" value="☞"> <input type="text" name="w" size=4>요일입니다.
+  </form>
+
+  <hr>
+  <hr>
+
+
+</body>
+</html>

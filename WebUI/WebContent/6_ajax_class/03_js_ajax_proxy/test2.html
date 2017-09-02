@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	window.onload = function() {
+		document.getElementById('kma').onclick = click_kma;
+	}
+
+	function click_kma() {
+		var xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState == 4 && xhr.status == 200) {
+				// 결과 처리
+				parse_kma(xhr.responseXML);
+
+			}
+
+		};
+
+		xhr.open('GET', 'proxy_kma.jsp', true);
+		xhr.send();//get방식이니까 따로 뭐 보낼거 없음. 그냥 공백둬도 됨.
+	}
+
+	function parse_kma(resXml) {
+		var ctg = resXml.getElementsByTagName('category')[0].textContent;
+		var result = document.getElementById('result');
+		result.innerHTML = "<h2>" + ctg + "<br/>";
+
+		var data = resXml.getElementsByTagName('data')
+		//글씨 하나만 찾는게 아니라서 data로 찾아서 갖고 오면 되.
+		//그리고 for문으로 반복을 돌려 꺼내는거지.
+
+		for (var i = 0; i < data.length; i++) {
+			var dataTag = data[i];
+			var hour = dataTag.getElementsByTagName("hour")[0].textContent;
+			//이름 자체가 배열로 떨어지는 거.
+			var temp = dataTag.getElementsByTagName("temp")[0].textContent;
+			result.innerHTML += "시간: " + hour + "<br/>" + "온도: " + temp
+					+ "<br/>";
+		}
+
+	}
+	// 서울시가 오픈한 데이터
+	// http://data.seoul.go.kr
+</script>
+</head>
+<body>
+  <button id='kma'>일기예보</button>
+  <div id='result' />
+</body>
+</html>

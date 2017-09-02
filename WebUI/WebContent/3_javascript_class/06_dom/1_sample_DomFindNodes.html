@@ -1,0 +1,130 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>DOM에서 노드 검색 방법</title>
+<script type="text/javascript">
+	window.onload = init;
+
+	function init() {
+		document.getElementById('btn').onclick = btnFunc;
+	}
+
+	function btnFunc() {
+		
+		// 1. DOM에서 Id 값으로 요소를 찾는 방법.
+		var result = document.getElementById('result');
+
+		/* input태그라면 value가 가능.
+		 result.value = '안녕,' + name.value + '님';
+		
+		 이 html문서에서 result는 input태그가 아니라 div이므로 불가.
+		 그래서 innerHTML을 사용. innerHTML은 동적인 놈을 만들 때 사용.
+		 result.innerHTML = '안녕,' + name.value + '님'; 
+
+		 태그로 적어도 가능
+		 result.innerHTML = '<p>안녕,' + name.value + '님</p>';*/
+
+		 
+		// 2. DOM에서 class명으로 요소를 찾는 방법
+		var name = document.getElementsByClassName('cname');
+
+		// Elements는 복수형. 즉, 리턴하는 값 갯수가 여러 개.
+		// 따라서 var name은 리턴 값이 여러개 인걸 자동 인지하고 배열형이 됨.
+
+		result.innerHTML = '<p>안녕,' + name[0].value + '님</p>';
+		// 1개 밖에 없어도 리턴형이 복수라(더 정확히는 name이 배열이라)
+		// name뒤에 0을 줘야 해.
+
+		
+		// 3. DOM에서 태그네임으로 요소를 찾는 방법
+
+		// 태그에 할당된 id 및 클래스의 값이 죄다 달라도
+		// getElementsByTagName으로 한 번에 찾기 가능.
+		var input = document.getElementsByTagName('input');
+		// 태그 중 input인 놈들만 찾겠다... var input에 배열로 들어온다고. 여러개니까.
+
+		// input태그를 찾아내려고 하니 총 4개. 그 중 텍필드 놈을 찾으려 하니
+		// 맨 마지막의 한 놈은 타입이 버튼이야. 
+		for (var i = 0; i < input.length; i++) {
+
+			// 그래서 input태그의 타입을 찾아냄. type이 text인 놈들로 
+			if (input.item(i).type == 'text' && input.item(i).value == '') {
+				// 타입이 text인놈만 확인하겠어 && 혹은 값이 공백일 때
+				alert('input태그, 필수입력사항입니다.');
+
+				return;
+			}
+		}
+
+		
+		// 4. DOM에서 상대적인 관계로 찾는 방법.
+		// DOM 구조(트리구조)로 메모리에 올라왔기 때문에 요소를 찾기가 굉장히 쉬워져.
+		// id,태그명, 클래스명으로 찾기가 가능하고 마지막으로 상대적인 위치로 찾는 방법이 있음.
+
+		// 만약 label을 찾는다면 라벨의 자식은 이름: 학과 : 학교... 그리고 인풋 놈들 등
+		var me = document.getElementById('label');
+		var childs = me.childNodes; // childNodes. 내 자식 찾는 거.
+
+		for (var i = 0; i < childs.length; i++) {
+			if (childs.item(i).nodeType == 1 && childs.item(i).value == '') {
+				// nodeType이 1인걸 감지하고 그 중 안의 값(value)이 공백인 걸 감지하겠다.
+				// childs.item(i).nodeType == 1에 의해 수많은 노드들 중 태그(Element)만 감지.
+				// 그리고 그 태그의 값이 공백일 때.
+
+				// nodeType 프라퍼티 값
+				// 1 - 요소노드 (Element)
+				// 2 - 속성노드
+				// 3 - 텍스트노드
+				// 4 - CDATA 노드
+				// 5 - 실제참조노드
+				// 6 - 실제선언노드
+				// 7 - 처리명령노드
+				// 8 - 코멘트 노드
+
+				//childs.item(i).nodeType == 1. 1이니까 요소노드
+				alert(childs.item(i).name + '(상대적 요소위치)필수입력사항이라.');
+				return;
+			}
+		}
+
+		
+		// 5. DOM 구조는 아니지만 폼의 요소로 찾는 방법
+		// 폼의 요소니까 name값으로 찾아들어가는 거.
+
+		var name = document.fm.name.value;
+		var dept = document.fm.dept.value;
+		var univ = document.fm.univ.value;
+
+		// 사용자가 입력한 이름, 학과, 학교를 result에다 출력하려 하는데
+		// result가 현재 div이므로 아래 것처럼 value로 지정하여 쓸 수 없다.
+		// document.getElementById("result").value = name+'이것은 이름' + dept +'이것은 부서'+ univ + '이것은 학교';
+
+		// document.getElementById("result").value는 div가 아니라 input일 때에만 가능,
+		// 결국 div에다 써줄려면 아래처럼 innerHTML써야 함.
+		result.innerHTML = name + '이것은 이름' + dept + '이것은 부서' + univ + '이것은 학교';
+
+	}
+</script>
+</head>
+
+<body>
+
+  <form name="fm">
+
+    <label id="label"> 이름 : </label><input type="text" id="name" class="cname" name="name" size="15" />
+    <!-- iD와 Name은 보통 같게 주지만, 클래스는 좀 다르게 줘도 됨. 중복이 가능하므로 -->
+    <br />
+
+    학과 : <input type="text" id="dept" name="dept" size="15" />
+    <br />
+    학교 : <input id="btn" type="button" value="버튼" />
+
+    <!-- div는 출력을 할 수 있는 일종의 공간임 -->
+    <div id="result"></div>
+
+  </form>
+
+</body>
+</html>
+<!-- * innerHTML과 eval() 비교 - 조별 검색. -->

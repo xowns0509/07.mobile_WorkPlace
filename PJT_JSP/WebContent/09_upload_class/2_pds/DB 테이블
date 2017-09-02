@@ -1,0 +1,26 @@
+
+
+테이블명 : PDS_ITEM
+
+PDS_ITEM_ID		NUMBER 			PK
+FILENAME		VARCHAR2(100) 	NOT NULL
+REALPATH 		VARCHAR2(200) 	NOT NULL
+FILESIZE 		NUMBER 
+DOWNCOUNT 		NUMBER 
+DESCRIPTION 	VARCHAR2(255) 
+
+-- 테이블 생성:
+create table PDS_ITEM(
+PDS_ITEM_ID number constraint pk_PDS_ITEM_PDS_ITEM_ID PRIMARY KEY,
+FILENAME varchar2(100) not null,
+REALPATH varchar2(200) not null,
+FILESIZE number,
+DOWNCOUNT number,
+DESCRIPTION varchar2(255)
+);
+
+
+-- 시퀀스 생성 : seq_pos_item_id
+create sequence seq_pos_item_id;
+
+

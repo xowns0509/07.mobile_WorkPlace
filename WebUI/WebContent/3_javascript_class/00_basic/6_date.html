@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>6_data.html</title>
+<script type="text/javascript">
+	/* 데이트변수를 생성하면서 날짜 세팅 */
+	var d = new Date('2016/05/04');
+
+	document.write("d 출력: " + d + "<br/>");
+	document.write("d.getYear() 출력: " + d.getYear() + "<br/>");//1900년도 부터 출력시작이기 때문에 116
+	document.write("d.getFullYear() 출력: " + d.getFullYear() + "<br/>");
+	document.write("d.getMonth() 출력: " + d.getMonth() + "<br/>");//may: 4. 5월이 4로 출력되는게 맞다. 
+	document.write("d.getDate() 출력: " + d.getDate() + "<br/>");//4일
+	document.write("d.getDay() 출력: " + d.getDay() + "<br/>"); //
+
+	/* 데이트변수를 생성 할 때 괄호 안에 아무것도 없으면 오늘 날짜 세팅 */
+	var today = new Date();
+	/* 오늘날짜 구하기. 날짜를 보는 방식 3가지 */
+	document.write("today 출력: " + today + "<br/>");
+	document.write("today.toLocaleString() 출력: " + today.toLocaleString()
+			+ "<br/>");
+	document.write("today.toGMTString() 출력: " + today.toGMTString() + "<br/>");
+	document
+			.write("today.toDateString() 출력: " + today.toDateString() + "<br/>");
+
+	/* 데이트변수를 생성 할 때 오늘 날짜로 세팅 하나
+	그 변수에 년도와 월, 일자를 지정가능.*/
+	var today = new Date();
+	today.setFullyear(2016);
+	today.setMonth(4);
+	today.setDate(4);
+
+	/* 날짜 셋팅하기. 사용자가 달력선택 시 */
+	document.write("set today 출력: " + today + "<br/>");
+	document.write("set today.toLocaleString() 출력: " + today.toLocaleString()
+			+ "<br/>");
+	document.write("set today.toGMTString() 출력: " + today.toGMTString()
+			+ "<br/>");
+	document.write("set today.toDateString() 출력: " + today.toDateString()
+			+ "<br/>");
+
+	document.write("여기까지" + "<br/>");
+	today.setMonth(today.getMonth() - 3);
+	document.write("today.toLocaleString() 출력: " + today.toLocaleString()
+			+ "<br/>" + "<br/>");
+
+	today.setDate(today.getDate() - 20);
+	document.write("today.toLocaleString() 출력: " + today.toLocaleString()
+			+ "<br/>" + "<br/>");
+
+	/* 	전달 마지막 날 구하는거 */
+	today.setDate(0); //전달의 마지막 날 세팅
+	document.write(today.toLocaleString() + "<br/>");
+</script>
+
+</head>
+<body>
+
+</body>
+</html>

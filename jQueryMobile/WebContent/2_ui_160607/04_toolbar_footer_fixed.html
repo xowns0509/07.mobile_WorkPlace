@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>jQuery Mobile</title>
+<meta charset="euc-kr" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+
+<link rel="shortcut icon" href="../image/icon.png">
+<link rel="apple-touch-icon" href="../image/icon.png">
+
+<!-- 전체파일보기에 헤더와 푸터 고정으로 덮어지게 보이려면 -->
+<link href="../jQueryLibs/jquery.mobile-1.4.5.min.css" 	rel="stylesheet" type="text/css" />
+<script src="../jQueryLibs/jquery-1.11.1.js"></script>
+<script src="../jQueryLibs/jquery.mobile-1.4.5.min.js"></script>
+</head>
+
+<body>
+	<!-- 긴 내용에 대한 헤더와 푸터의 위치 확인 후 고정하면 -->
+	
+	<!-- 전체화면보기를 확인 후 헤더와 푸터를 고정 -->
+	<div data-role="page" data-fullscreen="true">
+		<div data-role="header">
+			<h1>헤더</h1>
+		</div>
+
+<!-- jsp 파일로 변경 후 확인 가능 -->
+<!-- 		<div data-role="content"> -->
+<!-- 			<%for(int i=1; i<=100; i++) {%> 아이템 <%=i%> <br /> <%}%> -->
+<!-- 		</div> -->
+
+		<div data-role="content">
+			<img src="../image/big-image.png" />
+		</div>
+
+		<div data-role="footer" data-position="fixed" class="ui-bar">
+			<!--   class="ui-bar"  : 버튼사이의 여백을 위해 -->
+			
+		</div>
+	</div>
+</body>
+</html>
+

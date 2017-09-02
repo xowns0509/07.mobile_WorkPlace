@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+<title>버튼</title>
+<link rel="shortcut icon" href="../image/icon.png">
+<link rel="apple-touch-icon" href="../image/icon.png">
+<link href="../jQueryLibs/jquery.mobile-1.4.5.min.css" rel="stylesheet" type="text/css" />
+<script src="../jQueryLibs/jquery-1.11.1.js"></script>
+<script src="../jQueryLibs/jquery.mobile-1.4.5.min.js"></script>
+<!-- 주의. 클래스명이 ui-icon- 으로 시작해야만 함. 지금은 아닐 수도 있음.-->
+<style type="text/css">
+.ui-icon-letter-s:after {
+	background-image: url("../image/letter-s.png")
+}
+</style>
+</head>
+<body>
+	<div data-role="page">
+		<div data-role="header" data-position="fixed">
+			<h1>Header</h1>
+		</div>
+		<div data-role="content">
+			<!-- 1.기본버튼 -->
+			<a href="#" data-role="button">버튼1</a>
+			<br />
+			<a href="#" data-role="button" data-inline='true'>버튼2</a>
+			<br />
+			<!-- 기본값은 양옆으로 꽉차는 버튼이지만 inline은 글씨크기 만큼 -->
+			<a href="#" data-role="button" style='width: 200px'>버튼3</a>
+			<br />
+			<table style='width: 100%'>
+				<tr>
+					<td><a href="#" data-role="button">버튼4</a></td>
+					<td><a href="#" data-role="button">버튼5</a></td>
+				</tr>
+			</table>
+			<!-- 2.아이콘버튼 -->
+			<a href="#" data-role="button" data-inline='true' data-icon='power'>아이콘버튼1</a>
+			<br />
+			<a href="#" data-role="button" data-inline='true' data-icon='mail' data-iconpos='right'>아이콘버튼2</a>
+			<br />
+			<a href="#" data-role="button" data-inline='true' data-icon='home' data-iconpos='bottom'>아이콘버튼3</a>
+			<br />
+			<a href="#" data-role="button" data-inline='true' data-icon='audio' data-iconpos='top'>아이콘버튼4</a>
+			<br />
+			<a href="#" data-role="button" data-inline='true' data-icon='audio' data-iconpos='notext'>아이콘버튼5</a>
+			<br />
+			<a href="#" data-role="button" data-inline='true' data-icon='letter-s'>내가만든 letter-s</a>
+			<br />
+
+			<!-- 3. 버튼 그룹 -->
+			<div data-role='controlgroup'>
+				<a href="#" data-role="button" data-inline='true' data-icon='back'>뒤로</a>
+				<br />
+				<a href="#" data-role="button" data-inline='true' data-icon='refresh'>새로고침</a>
+				<br />
+				<a href="#" data-role="button" data-inline='true' data-icon='forward'>앞으로</a>
+				<br />
+			</div>
+
+			<div data-role='controlgroup' data-type='horizontal'>
+				<a href="#" data-role="button" data-inline='true' data-icon='back'>뒤로</a>
+				<a href="#" data-role="button" data-inline='true' data-icon='refresh'>새로고침</a>
+				<a href="#" data-role="button" data-inline='true' data-icon='forward'>앞으로</a>
+			</div>
+
+		</div>
+
+		<div data-role="footer" data-position="fixed">
+			<h1>Footer</h1>
+		</div>
+
+	</div>
+</body>
+</html>

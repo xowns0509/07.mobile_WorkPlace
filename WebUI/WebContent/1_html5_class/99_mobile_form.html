@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="euc-kr" />
+<!-- 모바일에서 작동하려면 반드시 아래 meta태그에 viewport기술 -->
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, 
+							maximum-scale=1.0, minimum-scale=1.0, 
+							user-scalable=no" />
+<title>모바일 페이지</title>
+</head>
+<body>
+  <form action="#">
+    <!-- html4버전까지에는 사용자가 입력하는 게 텍스트 밖에 없었으나
+   html5부터는 url이던 날짜이던 상황에 맞게끔 세분화 시켰다. -->
+    <!-- 왜 굳이 이렇게 세분화시켜놨냐고? 이게 왜 중요하냐면 모바일에서의 키 팬이 바뀜.
+    날짜만 나오도록 하게 하거나... 그럴 때 사용 -->
+    날짜: <input type="date" min="2011-11-01" max="2021-12-31" step="1" value="2018-11-11" /><br />
+    범위: <input type="range" min="0" max="100" step="1" value="50" /><br />
+    숫자: <input type="number" min="0" max="100" step="1" value="50" /><br />
+    검색: <input type="search" /><br />
+   URL: <input type="url" list="url_list" /><br />
+    메일: <input type="email" /> <br /> 힌트문자: <input type="text" placeholder="이름을 입력하세요" /> <br />
+    자동포커스: <input type="text" autofocus /> <br /> 빈값검사: <input type="text" required /> <br />
+    정규표현식: <input type="text" pattern="(010|011)-\d{3,4}-\d{4}" /> <br /> <input type="submit" value="Submit" />
+  </form>
+</body>
+</html>
